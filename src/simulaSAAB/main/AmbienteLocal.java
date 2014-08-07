@@ -1,0 +1,149 @@
+package simulaSAAB.main;
+
+import java.util.List;
+
+import com.vividsolutions.jts.geom.Geometry;
+
+import repast.simphony.context.Context;
+import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
+import simulaSAAB.persistencia.RegionConfigurada;
+
+public class AmbienteLocal{
+	
+	
+	private int AmbienteID;
+	
+	private String Nombre;
+	
+	private Geometry geometria;
+	
+	private String Clima;
+	
+	private String PisoTermico;
+	
+	private List<Producto> ProductosAgricolasViables;
+	
+	private List<SistemaActividadHumana> ActividadesViables;
+	
+	private List NodosSAAB;
+	
+	private List CentrosUrbanos;
+	
+	private List ViaPrincipal;
+	
+	private Terreno terreno;
+	
+	/**
+	 * Constructor
+	 */
+	public AmbienteLocal(){
+		
+	}
+	
+	
+	public AmbienteLocal(RegionConfigurada r){
+		
+		this.AmbienteID	=r.getId();
+		this.Nombre		=r.getNombre();
+		this.Clima		=r.getClima();
+		this.PisoTermico=r.getPisoTermico();
+		
+	}
+	
+	
+	/**
+	 * @return the productosAgricolasViables
+	 */
+	public List<Producto> getProductosAgricolasViables() {
+		return ProductosAgricolasViables;
+	}
+	/**
+	 * @return the actividadesViables
+	 */
+	public List<SistemaActividadHumana> getActividadesViables() {
+		return ActividadesViables;
+	}
+	/**
+	 * @return the ambienteID
+	 */
+	public int getAmbienteID() {
+		return AmbienteID;
+	}
+	/**
+	 * @param ambienteID the ambienteID to set
+	 */
+	public void setAmbienteID(int ambienteID) {
+		AmbienteID = ambienteID;
+	}
+	/**
+	 * @return the nombre
+	 */
+	public String getNombre() {
+		return Nombre;
+	}
+	/**
+	 * @param nombre the nombre to set
+	 */
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+	/**
+	 * @return the clima
+	 */
+	public String getClima() {
+		return Clima;
+	}
+	/**
+	 * @param clima the clima to set
+	 */
+	public void setClima(String clima) {
+		Clima = clima;
+	}
+	/**
+	 * @return the pisoTermico
+	 */
+	public String getPisoTermico() {
+		return PisoTermico;
+	}
+	/**
+	 * @param pisoTermico the pisoTermico to set
+	 */
+	public void setPisoTermico(String pisoTermico) {
+		PisoTermico = pisoTermico;
+	}
+
+
+	/**
+	 * @return the geometria
+	 */
+	public Geometry getGeometria() {
+		return geometria;
+	}
+
+
+	/**
+	 * @param geometria the geometria to set
+	 */
+	public void setGeometria(Geometry geometria) {
+		this.geometria = geometria;
+	}
+
+
+	/**
+	 * @return the terreno
+	 */
+	public Terreno getTerreno() {
+		return terreno;
+	}
+
+
+	/**
+	 * @param terreno the terreno to set
+	 */
+	public void setTerreno(Terreno terreno) {
+		this.terreno = terreno;
+	}
+	
+	
+
+}

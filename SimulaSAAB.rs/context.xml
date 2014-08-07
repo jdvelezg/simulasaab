@@ -1,0 +1,36 @@
+<context id="SAABContext" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="http://repast.org/scenario/context">
+	
+	<context id="NutriredContext">
+		<projection type="network" id="NutriredNetwork"/>
+	</context>
+	
+  	<context id="AgroredContext">
+  		<projection type="network" id="AgroredNetwork"/>
+  	</context>
+  	
+  	<context id="RoadContext">
+  		<projection type="geography" id="RoadGeography"/>
+  	</context>
+  	
+  	<context id="JunctionContext">
+  		<projection type="network" id="JunctionNetwork"/>
+  	</context>
+  	
+  	<context id="RuralContext">
+  		<projection type="geography" id="RuralGeography"/>
+  		<context id="OfferContext">
+  			<projection type="geography" id="OfferGeography"/>
+  			<projection type="network" id="OfferNetwork"/>
+  		</context>
+  	</context>
+  	
+  	<context id="UrbanContext">
+  		<projection type="geography" id="UrbanGeography"/>
+  		<context id="DemandContext">
+  			<projection type="geography" id="DemandGeography"/>
+  			<projection type="network" id="DemandNetwork"/>
+  		</context>
+  	</context>
+</context>

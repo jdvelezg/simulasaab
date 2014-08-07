@@ -1,0 +1,1 @@
+ERROR [AWT-EventQueue-0] 2014-08-06 21:45:27,285 repast.simphony.dataLoader.engine.MIContextXMLDataLoaderAction - ModelInitializer class was not found. Unable to initialize scenario
