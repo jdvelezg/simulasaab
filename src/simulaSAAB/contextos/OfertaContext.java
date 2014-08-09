@@ -1,6 +1,3 @@
-/**
- * 
- */
 package simulaSAAB.contextos;
 
 import repast.simphony.context.DefaultContext;

@@ -77,8 +77,10 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		
 		//Ambiente Rural
 		RuralContext	=new RuralContext();
+		SAABContext.addSubContext(RuralContext);
+		
 		RuralGis	= GeographyFactoryFinder.createGeographyFactory(null).createGeography(VariablesGlobales.GEOGRAFIA_RURAL, RuralContext, geoparams);
-		//loadShapefiles(VariablesGlobales.MUNICIPIOS_SHAPEFILE,"municipios",RuralContext,RuralGis);
+		loadShapefiles(VariablesGlobales.MUNICIPIOS_SHAPEFILE,"municipios",RuralContext,RuralGis);
 		
 		OfertaContext	= new OfertaContext();
 		OfertaGis		= GeographyFactoryFinder.createGeographyFactory(null).createGeography(
@@ -87,12 +89,14 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		OfertaNetwork	= NetDemandaBuilder.buildNetwork();
 		
 		RuralContext.addSubContext(OfertaContext);		
-		SAABContext.addSubContext(RuralContext);
+		
 		
 		//Ambiente Distrital
-		BogotaContext 	= new DistritalContext();	
+		BogotaContext 	= new DistritalContext();
+		SAABContext.addSubContext(BogotaContext);
+		
 		BogotaGis		= GeographyFactoryFinder.createGeographyFactory(null).createGeography(VariablesGlobales.GEOGRAFIA_DISTRITAL, BogotaContext, geoparams);
-		//loadShapefiles(VariablesGlobales.BOGOTA_SHAPEFILE,"municipios",BogotaContext,BogotaGis);
+		loadShapefiles(VariablesGlobales.BOGOTA_SHAPEFILE,"municipios",BogotaContext,BogotaGis);
 		
 		DemandaContext 	= new DemandaContext();
 		DemandaGis		= GeographyFactoryFinder.createGeographyFactory(null).createGeography(
@@ -101,7 +105,7 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		OfertaNetwork	= NetOfertaBuilder.buildNetwork();
 		
 		BogotaContext.addSubContext(DemandaContext);
-		SAABContext.addSubContext(BogotaContext);
+		
 		
 		//Agroredes
 		AgroredContext	= new AgroredContext();
@@ -127,17 +131,8 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		NetworkBuilder<Object> NetConxBuilder	=new NetworkBuilder<Object>(VariablesGlobales.RED_CONEXIONES,ConexionesContext,false);
 		ConexionesNetwork = NetConxBuilder.buildNetwork();
 		SAABContext.addSubContext(ConexionesContext);
-		
-		
-				
-		/*cargaShapefiles("data/municipios.shp","municipios",context,BogotaGIS);//Carga municipios
-		cargaShapefiles("data/bogota.shp","municipios",context,BogotaGIS);//Carga bogota
-		cargaShapefiles("data/nodos_saab.shp","nodos",context,BogotaGIS);//Carga nodos logisticos
-		//cargaShapefiles("data/plazas_distritales.shp","plazas",context,BogotaGIS);//Carga plazas
-		//cargaShapefiles("data/vias_principales.shp","vias",context,BogotaGIS);//Carga vias principales
-		//cargaShapefiles("data/vias_secundarias.shp","vias",context,BogotaGIS);//Carga vias secundarias
-		
-		*/		
+							
+			
 		//crea productores de cebolla por region
 			
 		
@@ -162,7 +157,7 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 	 * @param context
 	 * @param geography
 	 */
-	private void loadShapefiles(String filename, String objeto, Context context, Geography geography){
+	private void loadShapefiles(String filename, String objeto, Context<Object> context, Geography<Object> geography){
 		
 		URL url 						= null;
 		SimpleFeatureIterator fiter 	= null;
@@ -170,16 +165,16 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		CoordinateReferenceSystem crs 	= null;
 		
 		
-		try{
+		/*try{
 			url = new File("").toURI().toURL();
 			
 		}catch(MalformedURLException e){
 			e.printStackTrace();
-		}
+		}*/
 				
 		try{
 			
-			url = new File("data/municipios.shp").toURI().toURL();
+			url = new File(filename).toURI().toURL();
 			store = new ShapefileDataStore(url);
 			
 		}catch(MalformedURLException e){
@@ -211,6 +206,7 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 				MultiPolygon mp	=(MultiPolygon)feature.getDefaultGeometry();
 				geom 			=(Polygon)mp.getGeometryN(0);
 				name 			=(String)feature.getAttribute("NAME_2");
+				System.out.println("Adding poligon-"+name+":"+geom.toText()+"//");
 			}
 			else if(geom instanceof Point){
 				

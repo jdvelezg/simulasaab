@@ -5,6 +5,7 @@ import java.util.List;
 import com.vividsolutions.jts.geom.Geometry;
 
 import repast.simphony.context.Context;
+import repast.simphony.engine.schedule.ScheduledMethod;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 import simulaSAAB.persistencia.RegionConfigurada;
 
@@ -144,6 +145,9 @@ public class AmbienteLocal{
 		this.terreno = terreno;
 	}
 	
-	
+	@ScheduledMethod (start = 1, interval = 1)
+	public void step () {
+		
+	}
 
 }
