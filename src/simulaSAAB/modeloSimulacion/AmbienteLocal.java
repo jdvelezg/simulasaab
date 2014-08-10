@@ -1,4 +1,4 @@
-package simulaSAAB.main;
+package simulaSAAB.modeloSimulacion;
 
 import java.util.List;
 
@@ -32,7 +32,6 @@ public class AmbienteLocal{
 	
 	private List ViaPrincipal;
 	
-	private Terreno terreno;
 	
 	/**
 	 * Constructor
@@ -128,26 +127,8 @@ public class AmbienteLocal{
 	public void setGeometria(Geometry geometria) {
 		this.geometria = geometria;
 	}
-
-
-	/**
-	 * @return the terreno
-	 */
-	public Terreno getTerreno() {
-		return terreno;
-	}
-
-
-	/**
-	 * @param terreno the terreno to set
-	 */
-	public void setTerreno(Terreno terreno) {
-		this.terreno = terreno;
-	}
 	
-	@ScheduledMethod (start = 1, interval = 1)
-	public void step () {
-		
-	}
+	
+	
 
 }

@@ -1,6 +1,6 @@
 package simulaSAAB.modeloSimulacion.comunicacion;
 
-import simulaSAAB.main.Producto;
+import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.persistencia.ProductoConfigurado;
 
 public class ConceptFactory {

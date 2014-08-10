@@ -11,7 +11,7 @@ import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
  * @author dampher
  *
  */
-public class AgroredContext extends DefaultContext<AgenteSaab> {
+public class AgroredContext extends DefaultContext<Object> {
 	
 	/**
 	 * Constructor

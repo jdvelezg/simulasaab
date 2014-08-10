@@ -1,6 +1,6 @@
 package simulaSAAB.persistencia;
 
-import simulaSAAB.main.Producto;
+import simulaSAAB.modeloSimulacion.Producto;
 
 public class ProductoConfigurado{
 	

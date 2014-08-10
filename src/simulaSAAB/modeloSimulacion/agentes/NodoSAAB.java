@@ -2,7 +2,7 @@ package simulaSAAB.modeloSimulacion.agentes;
 
 import com.vividsolutions.jts.geom.Geometry;
 
-import simulaSAAB.main.Producto;
+import simulaSAAB.modeloSimulacion.Producto;
 
 public class NodoSAAB extends NodoLogistico {
 	

@@ -1,6 +1,6 @@
 package simulaSAAB.modeloSimulacion.agentes;
 
-import simulaSAAB.main.Producto;
+import simulaSAAB.modeloSimulacion.Producto;
 
 public abstract class NodoLogistico implements AgenteSaab {
 	

@@ -1,4 +1,4 @@
-package simulaSAAB.main;
+package simulaSAAB.modeloSimulacion;
 
 import com.vividsolutions.jts.geom.Coordinate;
 

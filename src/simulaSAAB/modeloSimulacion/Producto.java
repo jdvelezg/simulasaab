@@ -1,4 +1,4 @@
-package simulaSAAB.main;
+package simulaSAAB.modeloSimulacion;
 
 import simulaSAAB.persistencia.ProductoConfigurado;
 

@@ -3,8 +3,9 @@ package simulaSAAB.modeloSimulacion.agentes;
 import java.util.ArrayList;
 import java.util.List;
 
-import simulaSAAB.main.Producto;
-import simulaSAAB.main.Terreno;
+import repast.simphony.engine.schedule.ScheduledMethod;
+import simulaSAAB.modeloSimulacion.Producto;
+import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
@@ -108,6 +109,11 @@ public class Productor extends ActorDeAbastecimiento {
 	public void juzgarMundoSegunEstandares(Utilidad resultado) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@ScheduledMethod (start = 1, interval = 1)
+	public void step () {
+		
 	}
 
 }

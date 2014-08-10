@@ -4,7 +4,7 @@ import repast.simphony.context.DefaultContext;
 import simulaSAAB.main.VariablesGlobales;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 
-public class NutriredContext extends DefaultContext<AgenteSaab> {
+public class NutriredContext extends DefaultContext<Object> {
 	/**
 	 * Constructor
 	 */

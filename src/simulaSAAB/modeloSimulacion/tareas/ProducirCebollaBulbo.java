@@ -1,7 +1,7 @@
 package simulaSAAB.modeloSimulacion.tareas;
 
-import simulaSAAB.main.Producto;
-import simulaSAAB.main.Terreno;
+import simulaSAAB.modeloSimulacion.Producto;
+import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 import simulaSAAB.modeloSimulacion.comunicacion.Accion;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;

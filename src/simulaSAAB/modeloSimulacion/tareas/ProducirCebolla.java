@@ -1,6 +1,6 @@
 package simulaSAAB.modeloSimulacion.tareas;
 
-import simulaSAAB.main.Terreno;
+import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 import simulaSAAB.modeloSimulacion.agentes.Productor;
 

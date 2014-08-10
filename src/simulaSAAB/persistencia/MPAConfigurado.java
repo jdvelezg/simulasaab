@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import simulaSAAB.main.Producto;
+import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.comunicacion.Accion;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;

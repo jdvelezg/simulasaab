@@ -6,8 +6,8 @@ package simulaSAAB.modeloSimulacion.inteligencia;
 import java.util.ArrayList;
 import java.util.List;
 
-import simulaSAAB.main.Producto;
-import simulaSAAB.main.Terreno;
+import simulaSAAB.modeloSimulacion.Producto;
+import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.comunicacion.Accion;
 import simulaSAAB.modeloSimulacion.comunicacion.ConceptFactory;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;

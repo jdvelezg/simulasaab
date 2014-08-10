@@ -2,7 +2,7 @@ package simulaSAAB.modeloSimulacion.agentes;
 
 import java.util.List;
 
-import simulaSAAB.main.Producto;
+import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
 

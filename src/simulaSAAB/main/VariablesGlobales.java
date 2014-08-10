@@ -5,10 +5,13 @@ public abstract class VariablesGlobales {
 	/**
 	 * Variables que apuntan a la ubicación de los archivos de datos geograficos ESRI Shapefiles
 	 */	
-	public static final String VIASPRINCIPALES_SHAPEFILE	="data/municipios.shp";
-	public static final String CONEXIONESVIALES_SHAPEFILE	="data/municipios.shp";
 	public static final String MUNICIPIOS_SHAPEFILE			="data/municipios.shp";
-	public static final String BOGOTA_SHAPEFILE				="data/bogota.shp";	
+	public static final String BOGOTA_SHAPEFILE				="data/bogota.shp";		
+	public static final String CENTROSURBANOS_SHAPEFILE		="data/centros_urbanos.shp";
+	public static final String NODOSSAAB_SHAPEFILE			="data/nodos_saab.shp";
+	public static final String PLAZASDISTRITALES_SHAPEFILE	="data/plazas_distritales.shp";
+	public static final String VIASPRINCIPALES_SHAPEFILE	="data/vias_principales.shp";
+	public static final String CONEXIONESVIALES_SHAPEFILE	="data/municipios.shp";
 	
 	/**
 	 * Variables que definen los nombres de los contextos usados en la simulación.
@@ -17,6 +20,8 @@ public abstract class VariablesGlobales {
 	 * CONTEXTOS SAAB
 	 */
 	public static final String CONTEXTO_SAAB 		="SAABContext";
+	public static final String GEOGRAFIA_SAAB		="SAABGeography";
+	
 	//nutrired
 	public static final String CONTEXTO_NUTRIRED 	="NutriredContext";//Nodos urbanos (plazas distritales)+(tiendas)
 	public static final String RED_NUTRIRED			="NutriredNetwork";

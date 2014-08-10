@@ -2,7 +2,7 @@ package simulaSAAB.persistencia;
 
 import java.util.List;
 
-import simulaSAAB.main.Producto;
+import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 
 public class ConfiguracionStatelessEJB {
