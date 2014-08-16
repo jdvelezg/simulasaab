@@ -31,7 +31,7 @@ public class CerebroProductor implements CerebroDeDecision, CerebroDeAprendizaje
 		ArrayList<Proposito> propositos = new ArrayList<Proposito>();
 		
 		//Obtiene el terreno que posee el productor
-		Terreno t = new Terreno();
+		Terreno t = null;
 		
 		//Obtiene los productos ordenados de mayor a menor utilidad
 		productos = new ConfiguracionStatelessEJB("ASC").obtenerProductosConfigurados(productos);

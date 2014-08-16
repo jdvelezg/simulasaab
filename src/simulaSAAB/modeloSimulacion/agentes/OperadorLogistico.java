@@ -6,20 +6,17 @@ package simulaSAAB.modeloSimulacion.agentes;
 import java.util.List;
 
 import simulaSAAB.modeloSimulacion.Producto;
-import simulaSAAB.modeloSimulacion.Terreno;
-import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
 import simulaSAAB.modeloSimulacion.inteligencia.CerebroProductor;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
-import simulaSAAB.persistencia.AgenteConfigurado;
 
 /**
  * @author dampher
  *
  */
-public class Intermediario extends ActorDeAbastecimiento {
+public class OperadorLogistico extends ActorDeAbastecimiento {
 	
 	private int AgentID;
 	
@@ -29,27 +26,19 @@ public class Intermediario extends ActorDeAbastecimiento {
 	
 	private Objetivo Objetivo;
 	
-	private Item Dinero;
-
-	private List<Item> Posesiones;
-	
-	//private CerebroIntermediario Cerebro;
+	//private CerebroProductor CerebroProductor;
 	
 	private Proposito PropositoVigente;
 	
 	private SistemaActividadHumana actividadVigente;
 	
+	
+	
+	
 	/**
 	 * Constructor
 	 */
-	public Intermediario(){
-		
-		AgenteConfigurado agt 	=new AgenteConfigurado("Intermediario");
-		this.Nombre				=agt.getTipo();
-		this.Objetivo 			=agt.getObjetivo();
-		//this.Cerebro	=new CerebroIntermediario();
-		
-		this.estado = "IDLE";
+	public OperadorLogistico(){
 		
 	}
 
@@ -161,34 +150,6 @@ public class Intermediario extends ActorDeAbastecimiento {
 	 */
 	public void setObjetivo(Objetivo objetivo) {
 		Objetivo = objetivo;
-	}
-
-	/**
-	 * @return the dinero
-	 */
-	public Item getDinero() {
-		return Dinero;
-	}
-
-	/**
-	 * @param dinero the dinero to set
-	 */
-	public void setDinero(Item dinero) {
-		Dinero = dinero;
-	}
-
-	/**
-	 * @return the posesiones
-	 */
-	public List<Item> getPosesiones() {
-		return Posesiones;
-	}
-
-	/**
-	 * @param posesiones the posesiones to set
-	 */
-	public void addPosesiones(Item posesiones) {
-		Posesiones.add(posesiones);
 	}
 
 	/**

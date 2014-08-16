@@ -30,14 +30,21 @@ import repast.simphony.context.space.gis.GeographyFactory;
 import repast.simphony.context.space.gis.GeographyFactoryFinder;
 import repast.simphony.context.space.graph.NetworkBuilder;
 import simulaSAAB.modeloSimulacion.AmbienteLocal;
+import simulaSAAB.modeloSimulacion.CentroDeAcopio;
 import simulaSAAB.modeloSimulacion.CentroUrbano;
 import simulaSAAB.modeloSimulacion.PlazaDistrital;
+import simulaSAAB.modeloSimulacion.Terreno;
+import simulaSAAB.modeloSimulacion.Tienda;
+import simulaSAAB.modeloSimulacion.Vehiculo;
 import simulaSAAB.modeloSimulacion.ViaTransitable;
+import simulaSAAB.modeloSimulacion.agentes.Intermediario;
 import simulaSAAB.modeloSimulacion.agentes.NodoSAAB;
 import simulaSAAB.modeloSimulacion.agentes.Productor;
+import simulaSAAB.modeloSimulacion.agentes.VendedorFinal;
 import simulaSAAB.persistencia.AgenteConfigurado;
 import simulaSAAB.persistencia.RegionConfigurada;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
+import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.contextos.*;
 
 
@@ -226,6 +233,8 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 				context.add(region);
 				geography.move(region, geom);
 				
+				crearProductores(region,50,geography,context);
+				
 				break;
 			case "urbano"://Cuando carga Centros urbanos				
 				
@@ -270,17 +279,116 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 	}
 	
 	/**
-	 * Crea y ubica los productores aleatoriamente en el contexto rural
+	 * Crea y ubica los productores aleatoriamente en el contexto rural, usando el centroide de la region y su longitud
+	 * para acotar el sector.
+	 * @param amb Ambiente local al que agregan los agentes
+	 * @param cantidad Numero de agentes a agregar
+	 * @param geography Geografia a la que se agregan los agentes
 	 */
-	private void crearProductores(AmbienteLocal amb, int cantidad, Geography<Object> geography){
+	private void crearProductores(AmbienteLocal amb, int cantidad, Geography<Object> geography, Context<Object> contexto){
 		
-		GeometryFactory geofact 	= new GeometryFactory();
-		Productor productor			= new Productor("Productor");
+		GeometryFactory geofact = new GeometryFactory();
+		Productor productor		= new Productor("Productor");
+		
 		
 		//Obtiene el centroide de la region y el valor de la mitad de su longitud
 		Coordinate center 	= amb.getGeometria().getCentroid().getCoordinate();
 		double large		= amb.getGeometria().getLength()/2;
+		//define las coordenada maximas
+		double Xmaxpos = center.x+large;
+		double Ymaxpos = center.y+large;
 		
+		for(int i=0; i<=cantidad; i++){
+			
+			Coordinate AgentCoord 	= center;//new Coordinate(RandomHelper.nextDoubleFromTo(center.x, Xmaxpos),RandomHelper.nextDoubleFromTo(center.y, Ymaxpos));			
+			Point geom 				= geofact.createPoint(AgentCoord);
+			Point terrenogeom 		= geofact.createPoint(AgentCoord);
+			Terreno terreno			= new Terreno(AgentCoord);
+			
+			contexto.add(productor);
+			contexto.add(terreno);
+			
+			geography.move(productor, geom);
+			geography.move(terreno, terrenogeom);			
+			
+			System.out.println("productor:"+large+" "+geom.toText());
+		}
+		
+		
+	}
+	
+	/**
+	 * Crea y ubica intermedirios aleatoriamente en el contexto rural, usando el centroide de la region y su longitud
+	 * para acotar el sector.
+	 * @param amb
+	 * @param cantidad
+	 * @param geography
+	 */
+	private void crearIntermediarios(AmbienteLocal amb, int cantidad, Geography<Object> geography, Context<Object> contexto){
+		
+		GeometryFactory geofact 	= new GeometryFactory();
+		Intermediario agente		= new Intermediario();
+		
+		
+		//Obtiene el centroide de la region y el valor de la mitad de su longitud
+		Coordinate center 	= amb.getGeometria().getCentroid().getCoordinate();
+		double large		= amb.getGeometria().getLength()/2;
+		//define las coordenada maximas
+		double Xmaxpos = center.x+large;
+		double Ymaxpos = center.y+large;
+		
+		for(int i=0; i<=cantidad; i++){
+			
+			int random			= RandomHelper.nextInt();
+			Coordinate AgentCoord 	= new Coordinate(RandomHelper.nextDoubleFromTo(center.x, Xmaxpos),RandomHelper.nextDoubleFromTo(center.y, Ymaxpos));			
+			Point geom 				= geofact.createPoint(AgentCoord);
+			Point bodegageom 		= geofact.createPoint(AgentCoord);
+			Point cargeom			= geofact.createPoint(AgentCoord);
+			
+			contexto.add(agente);
+			geography.move(agente, geom);
+			
+			if(random%3==0){//Crea y asigna centro de acopio aleatoriamente
+				
+				CentroDeAcopio bodega = new CentroDeAcopio("",AgentCoord);
+				bodega.setPropietario(agente);
+				agente.addPosesiones(new Item("bodega","CentroDeAcopio"));
+				
+				contexto.add(bodega);
+				geography.move(bodega, bodegageom);
+				
+			}else if(random%2==0){//crea y asigna camion de carga aleatoriamente
+				
+				Vehiculo camion = new Vehiculo("Camion","",2003,"");
+				camion.setPropietario(agente);
+				agente.addPosesiones(new Item("camion","Vehiculo"));
+				
+				contexto.add(camion);
+				geography.move(camion, cargeom);
+			}
+						
+			
+		}
+	}
+	
+	/**
+	 * Crea y ubica los vendedores finales aleatoriamente en el contexto rural, usando el centroide de la region y su longitud
+	 * para acotar el sector.
+	 * @param amb
+	 * @param cantidad
+	 * @param geography
+	 * @param contexto
+	 */
+	private void crearTenderos(AmbienteLocal amb, int cantidad, Geography<Object> geography, Context<Object> contexto){
+		
+		GeometryFactory geofact = new GeometryFactory();
+		VendedorFinal agente	= new VendedorFinal();
+		
+		
+		//Obtiene el centroide de la region y el valor de la mitad de su longitud
+		Coordinate center 	= amb.getGeometria().getCentroid().getCoordinate();
+		double large		= amb.getGeometria().getLength()/2;
+		//define las coordenada maximas
 		double Xmaxpos = center.x+large;
 		double Ymaxpos = center.y+large;
 		
@@ -288,12 +396,22 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 			
 			Coordinate AgentCoord 	= new Coordinate(RandomHelper.nextDoubleFromTo(center.x, Xmaxpos),RandomHelper.nextDoubleFromTo(center.y, Ymaxpos));			
 			Point geom 				= geofact.createPoint(AgentCoord);
+			Point tiendageom 		= geofact.createPoint(AgentCoord);
+			Tienda tienda			= new Tienda("",AgentCoord);
 			
-			geography.move(productor, geom);
+			contexto.add(agente);
+			contexto.add(tienda);
+			
+			geography.move(agente, geom);
+			geography.move(tienda, tiendageom);			
 			
 		}
 		
 		
 	}
+	
+	
+		
+
 
 }

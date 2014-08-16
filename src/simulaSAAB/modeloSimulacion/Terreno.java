@@ -6,16 +6,16 @@ public class Terreno {
 	
 	private int Hectareas;
 	private double HaUsadas;
-	private String usoSuelo;
-	private Coordinate coordenadas;
+	private String usoSuelo;	
 	private AmbienteLocal ambiente;
 	
+	private final Coordinate coordenadas;
 	
 	/**
 	 * Constructor
 	 */
-	public Terreno(){
-		
+	public Terreno(Coordinate c){
+		this.coordenadas = c;
 	}
 	
 	/**
@@ -59,13 +59,7 @@ public class Terreno {
 	public Coordinate getCoordenadas() {
 		return coordenadas;
 	}
-
-	/**
-	 * @param coordenadas the coordenadas to set
-	 */
-	public void setCoordenadas(Coordinate coordenadas) {
-		this.coordenadas = coordenadas;
-	}
+	
 
 	/**
 	 * @return the ambiente

@@ -1,5 +1,7 @@
 package simulaSAAB.modeloSimulacion.agentes;
 
+import java.util.List;
+
 import com.vividsolutions.jts.geom.Geometry;
 
 import simulaSAAB.modeloSimulacion.Producto;
@@ -9,6 +11,10 @@ public class NodoSAAB extends NodoLogistico {
 	private String nombre;
 	
 	private Geometry geometria;
+	
+	private List<AgenteSaab> OperadoresLogisticos;
+	
+	
 	
 	/**
 	 * Constructor
@@ -41,6 +47,8 @@ public class NodoSAAB extends NodoLogistico {
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 
 	/**
 	 * @return the nombre
@@ -69,6 +77,21 @@ public class NodoSAAB extends NodoLogistico {
 	public void setGeometria(Geometry geometria) {
 		this.geometria = geometria;
 	}
+
+	/**
+	 * @return the operadoresLogisticos
+	 */
+	public List<AgenteSaab> getOperadoresLogisticos() {
+		return OperadoresLogisticos;
+	}
+
+	/**
+	 * @param operadoresLogisticos the operadoresLogisticos to set
+	 */
+	public void addOperadoresLogisticos(AgenteSaab operadorLogistico) {
+		OperadoresLogisticos.add(operadorLogistico);
+	}
+	
 	
 	
 

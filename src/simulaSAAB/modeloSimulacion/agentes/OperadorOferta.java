@@ -12,6 +12,9 @@ import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
  */
 public class OperadorOferta extends OperadorSaab {
 	
+	/**
+	 * Constructor
+	 */
 	public OperadorOferta(){
 		
 	}
