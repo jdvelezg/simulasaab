@@ -15,7 +15,9 @@ import com.vividsolutions.jts.geom.Geometry;
 public class CentroUrbano extends AmbienteLocal {
 	
 	private Geometry geometria;
+	
 	private OperadorOferta OperadorOferta;
+	
 	private OperadorDemanda OperadorDemanda;
 	
 	/**
@@ -29,13 +31,15 @@ public class CentroUrbano extends AmbienteLocal {
 	/**
 	 * @return the geometria
 	 */
+	@Override
 	public Geometry getGeometria() {
-		return geometria;
+		return this.geometria;
 	}
 
 	/**
 	 * @param geometria the geometria to set
 	 */
+	@Override
 	public void setGeometria(Geometry geometria) {
 		this.geometria = geometria;
 	}

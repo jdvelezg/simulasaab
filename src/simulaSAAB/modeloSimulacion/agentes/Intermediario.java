@@ -3,6 +3,7 @@
  */
 package simulaSAAB.modeloSimulacion.agentes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import simulaSAAB.modeloSimulacion.Producto;
@@ -48,6 +49,7 @@ public class Intermediario extends ActorDeAbastecimiento {
 		this.Nombre				=agt.getTipo();
 		this.Objetivo 			=agt.getObjetivo();
 		//this.Cerebro	=new CerebroIntermediario();
+		this.Posesiones			= new ArrayList<Item>();
 		
 		this.estado = "IDLE";
 		

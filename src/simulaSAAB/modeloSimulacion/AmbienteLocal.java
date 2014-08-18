@@ -6,10 +6,11 @@ import com.vividsolutions.jts.geom.Geometry;
 
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import simulaSAAB.contextos.GeografiaFija;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 import simulaSAAB.persistencia.RegionConfigurada;
 
-public class AmbienteLocal{
+public class AmbienteLocal implements GeografiaFija{
 	
 	
 	private int AmbienteID;
