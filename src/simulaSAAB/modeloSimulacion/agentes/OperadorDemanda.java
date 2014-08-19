@@ -3,8 +3,12 @@
  */
 package simulaSAAB.modeloSimulacion.agentes;
 
+import java.util.List;
+
 import simulaSAAB.modeloSimulacion.comunicacion.Demanda;
+import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
+import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 
 /**
  * @author dampher
@@ -17,6 +21,11 @@ public class OperadorDemanda extends OperadorSaab {
 	 */
 	public OperadorDemanda(){
 		
+	}
+	
+	@Override
+	public List<Experiencia> getExperiencia(Proposito p) {
+		return null;
 	}
 
 	/* (non-Javadoc)

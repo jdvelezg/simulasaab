@@ -6,6 +6,7 @@ package simulaSAAB.modeloSimulacion.agentes;
 import java.util.List;
 
 import simulaSAAB.modeloSimulacion.Producto;
+import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
@@ -40,6 +41,11 @@ public class OperadorLogistico extends ActorDeAbastecimiento {
 	 */
 	public OperadorLogistico(){
 		
+	}
+	
+	@Override
+	public List<Experiencia> getExperiencia(Proposito p) {
+		return null;
 	}
 
 	/* (non-Javadoc)

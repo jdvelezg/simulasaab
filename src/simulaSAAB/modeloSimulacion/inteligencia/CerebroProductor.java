@@ -8,6 +8,8 @@ import java.util.List;
 
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
+import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
+import simulaSAAB.modeloSimulacion.agentes.Productor;
 import simulaSAAB.modeloSimulacion.comunicacion.Accion;
 import simulaSAAB.modeloSimulacion.comunicacion.ConceptFactory;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
@@ -20,6 +22,13 @@ import simulaSAAB.persistencia.ConfiguracionStatelessEJB;
  *
  */
 public class CerebroProductor implements CerebroDeDecision, CerebroDeAprendizaje {
+	
+	private Productor productor;
+	
+	public CerebroProductor(Productor p){
+		
+		productor = p;
+	}
 
 	/* (non-Javadoc)
 	 * @see simulaSAAB.modeloSimulacion.inteligencia.CerebroDeDecision#fijarPropositosDeProduccion()
@@ -31,31 +40,37 @@ public class CerebroProductor implements CerebroDeDecision, CerebroDeAprendizaje
 		ArrayList<Proposito> propositos = new ArrayList<Proposito>();
 		
 		//Obtiene el terreno que posee el productor
-		Terreno t = null;
+		List<Terreno> terrenos = this.productor.getTerrenosCultivables();
 		
 		//Obtiene los productos ordenados de mayor a menor utilidad
-		productos = new ConfiguracionStatelessEJB("ASC").obtenerProductosConfigurados(productos);
+		//productos = new ConfiguracionStatelessEJB("ASC").obtenerProductosConfigurados(productos);
 		
 			
 		for(Producto p: productos){
 			
-			//si tiene hectareas disponibles
-			if(t.haDisponibles()>0){
-				
-				//costo de producción	=p.getCostoProduccion();
-				//precio de venta		=p.getPrecioVenta();
-				//rendimiento por ha	=p.getRendimientoHa();
-				
-				double ingreso 	= p.getRendimientohectarea()*t.getHectareas()*p.getPrecioVenta();
-				double costo 	= t.getHectareas()*p.getCostoproduccionhectarea();
-				double utilidad = ingreso - costo;
-				
-				//Si la utilidad es mayor al 10% del costo
-				if(utilidad/costo > 1.1){
-					propositos.add(new Proposito(new Accion("Producir"),new Item(p.getNombre(),"Producto"),"en todos los terrenos disponibles"));
-				}
-			}
+			double ingreso 	= 0;
+			double costo 	= 0;
+			double utilidad	= 0;
 			
+			for(Terreno t: terrenos){				
+				
+				if(t.haDisponibles()>0){ //si tiene hectareas disponibles
+					
+					//costo de producción	=p.getCostoProduccion();
+					//precio de venta		=p.getPrecioVenta();
+					//rendimiento por ha	=p.getRendimientoHa();
+					
+					ingreso 	= p.getRendimientohectarea()*t.getHectareas()*p.getPrecioVenta();
+					costo 		= t.getHectareas()*p.getCostoproduccionhectarea();
+					utilidad 	= ingreso - costo;
+					
+					//Si la utilidad es mayor al 10% del costo
+					if(utilidad/costo > 1.1){
+						propositos.add(new Proposito(new Accion("Producir"),new Item(p.getNombre(),"Producto"),"en todos los terrenos disponibles"));
+					}
+				}
+				
+			}			
 		}
 		return propositos;		
 	}

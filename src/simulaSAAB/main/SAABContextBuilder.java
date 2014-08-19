@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.simple.SimpleFeatureIterator;
@@ -100,17 +102,17 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		
 		RuralContext.addSubContext(OfertaContext);		
 		
-		//Ambiente Distrital
-		BogotaContext 	= new DistritalContext();
-		SAABContext.addSubContext(BogotaContext);		
+		//Ambiente Distrital -NUTRIRED			
 		
-		loadShapefiles(VariablesGlobales.BOGOTA_SHAPEFILE,"urbano",BogotaContext,SAABGeography);
+		NutriredContext	= new NutriredContext();
+		NetworkBuilder<Object> NetNutriredBuilder = new NetworkBuilder<Object>(VariablesGlobales.RED_NUTRIRED,NutriredContext,false);
+		NutriredNetwork	= NetNutriredBuilder.buildNetwork();	
+		SAABContext.addSubContext(NutriredContext);
 		
-		DemandaContext 	= new DemandaContext();		
-		NetworkBuilder<Object> NetOfertaBuilder	=new NetworkBuilder<Object>(VariablesGlobales.RED_OFERTA,OfertaContext,false);
-		OfertaNetwork	= NetOfertaBuilder.buildNetwork();
-		
-		BogotaContext.addSubContext(DemandaContext);
+		loadShapefiles(VariablesGlobales.BOGOTA_SHAPEFILE,"urbano",NutriredContext,SAABGeography);
+		loadShapefiles(VariablesGlobales.PLAZASDISTRITALES_SHAPEFILE,"plazas",NutriredContext,SAABGeography);
+		loadShapefiles(VariablesGlobales.NODOSSAAB_SHAPEFILE,"nodos",NutriredContext,SAABGeography);
+			
 				
 		//Agroredes
 		AgroredContext	= new AgroredContext();
@@ -120,34 +122,25 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		
 		loadShapefiles(VariablesGlobales.CENTROSURBANOS_SHAPEFILE,"urbano",AgroredContext,SAABGeography);
 		
-		//Nutriredes
-		NutriredContext	= new NutriredContext();
-		NetworkBuilder<Object> NetNutriredBuilder = new NetworkBuilder<Object>(VariablesGlobales.RED_NUTRIRED,NutriredContext,false);
-		NutriredNetwork	= NetNutriredBuilder.buildNetwork();	
-		SAABContext.addSubContext(NutriredContext);
 		
-		loadShapefiles(VariablesGlobales.PLAZASDISTRITALES_SHAPEFILE,"plazas",NutriredContext,SAABGeography);
-		loadShapefiles(VariablesGlobales.NODOSSAAB_SHAPEFILE,"nodos",NutriredContext,SAABGeography);
-				
 		//Vias pricipales
 		ViasprincipalesContext	= new ViasContext();
 		SAABContext.addSubContext(ViasprincipalesContext);
 		
 		loadShapefiles(VariablesGlobales.VIASPRINCIPALES_SHAPEFILE,"vias",ViasprincipalesContext,SAABGeography);
 		
-		ConexionesContext 	= new ConexionesContext();
-		SAABContext.addSubContext(ConexionesContext);
+		//ConexionesContext 	= new ConexionesContext();
+		//SAABContext.addSubContext(ConexionesContext);
 		
 		//loadShapefiles(VariablesGlobales.BOGOTA_SHAPEFILE,"intersecciones",ConexionesContext,SAABGeography);
 		
-		NetworkBuilder<Object> NetConxBuilder	=new NetworkBuilder<Object>(VariablesGlobales.RED_CONEXIONES,ConexionesContext,false);
-		ConexionesNetwork = NetConxBuilder.buildNetwork();
+		//NetworkBuilder<Object> NetConxBuilder	=new NetworkBuilder<Object>(VariablesGlobales.RED_CONEXIONES,ConexionesContext,false);
+		//ConexionesNetwork = NetConxBuilder.buildNetwork();
 		
-		
-		System.out.println("RuralCOntext: "+RuralContext.size());
 		
 		return context;
 	}
+	
 	
 	/**
 	 * Carga las formas geometricas de las proyecciones desde archivos ESRI-Shapefile
@@ -282,10 +275,7 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 	 * @param cantidad Numero de agentes a agregar
 	 * @param geography Geografia a la que se agregan los agentes
 	 */
-	private void crearProductores(GeografiaFija amb, int cantidad, Geography<Object> geography, Context<Object> contexto){
-		
-		GeometryFactory geofact = new GeometryFactory();
-		Productor productor		= new Productor("Productor");
+	private void crearProductores(GeografiaFija amb, int cantidad, Geography<Object> geography, Context<Object> contexto){	
 				
 		/**
 		 * Obtiene el centroide de la region y las coordenadas de los vertices del ambiente, 
@@ -297,6 +287,9 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		
 		
 		for(int i=0; i<=cantidad; i++){
+			
+			GeometryFactory geofact = new GeometryFactory();
+			Productor productor		= new Productor("Productor");
 			
 			Coordinate AgentCoord 	= new Coordinate(RandomHelper.nextDoubleFromTo(center.x,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].x),RandomHelper.nextDoubleFromTo(center.y,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].y));//center;			
 			Point geom 				= geofact.createPoint(AgentCoord);
@@ -331,10 +324,7 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 	 * @param geography
 	 */
 	private void crearIntermediarios(GeografiaFija amb, int cantidad, Geography<Object> geography, Context<Object> contexto){
-		
-		GeometryFactory geofact 	= new GeometryFactory();
-		Intermediario agente		= new Intermediario();
-				
+						
 		/**
 		 * Obtiene el centroide de la region y las coordenadas de los vertices del ambiente, 
 		 * luego genera coordenadas aleatorias que van desde el centroide a cualquiera de los
@@ -344,6 +334,9 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		Coordinate center 	= amb.getGeometria().getCentroid().getCoordinate();
 		
 		for(int i=0; i<=cantidad; i++){
+			
+			GeometryFactory geofact 	= new GeometryFactory();
+			Intermediario agente		= new Intermediario();
 			
 			int random				= RandomHelper.nextInt();
 			Coordinate AgentCoord 	= new Coordinate(RandomHelper.nextDoubleFromTo(center.x,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].x),RandomHelper.nextDoubleFromTo(center.y,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].y));//center;			
@@ -390,8 +383,7 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 	 */
 	private void crearTenderos(GeografiaFija amb, int cantidad, Geography<Object> geography, Context<Object> contexto){
 		
-		GeometryFactory geofact = new GeometryFactory();
-		VendedorFinal agente	= new VendedorFinal();		
+			
 		
 		/**
 		 * Obtiene el centroide de la region y las coordenadas de los vertices del ambiente, 
@@ -402,6 +394,9 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		Coordinate center 	= amb.getGeometria().getCentroid().getCoordinate();
 		
 		for(int i=0; i<=cantidad; i++){
+			
+			GeometryFactory geofact = new GeometryFactory();
+			VendedorFinal agente	= new VendedorFinal();	
 			
 			Coordinate AgentCoord 	= new Coordinate(RandomHelper.nextDoubleFromTo(center.x,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].x),RandomHelper.nextDoubleFromTo(center.y,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].y));//center;			
 			Point geom 				= geofact.createPoint(AgentCoord);

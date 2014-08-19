@@ -84,4 +84,10 @@ public class ProducirCebolla extends ProducirCebollaBulbo {
 		return this.Estado;
 	}
 
+	@Override
+	public String getEnunciado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

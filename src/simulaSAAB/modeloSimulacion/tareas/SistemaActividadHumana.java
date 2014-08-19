@@ -5,6 +5,8 @@ import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 
 public interface SistemaActividadHumana {	
 	
+	String getEnunciado();
+	
 	Proposito getProposito();
 	
 	String getEstado();

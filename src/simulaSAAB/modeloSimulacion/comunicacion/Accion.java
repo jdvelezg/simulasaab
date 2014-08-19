@@ -2,6 +2,8 @@ package simulaSAAB.modeloSimulacion.comunicacion;
 
 public class Accion {
 	
+	private static int consecutivo;
+	
 	private int id;
 	
 	private String verbo;
@@ -9,9 +11,15 @@ public class Accion {
 	/**
 	 * Constructor
 	 */
+	public Accion(){
+		id=consecutivo++;
+	}
+	/**
+	 * Constructor
+	 */
 	public Accion(String verbo){
-		
-		this.verbo = verbo;
+		id=consecutivo++;
+		this.verbo 	= verbo;
 		
 	}
 	

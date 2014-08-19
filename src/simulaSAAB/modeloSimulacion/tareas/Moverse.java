@@ -71,4 +71,10 @@ public class Moverse implements SistemaActividadHumana {
 
 	}
 
+	@Override
+	public String getEnunciado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

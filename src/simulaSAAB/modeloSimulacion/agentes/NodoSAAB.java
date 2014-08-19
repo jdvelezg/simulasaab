@@ -5,6 +5,8 @@ import java.util.List;
 import com.vividsolutions.jts.geom.Geometry;
 
 import simulaSAAB.modeloSimulacion.Producto;
+import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
+import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 
 public class NodoSAAB extends NodoLogistico {
 	
@@ -22,6 +24,11 @@ public class NodoSAAB extends NodoLogistico {
 	 */
 	public NodoSAAB(String nombre){
 		this.nombre = nombre;
+	}
+	
+	@Override
+	public List<Experiencia> getExperiencia(Proposito p) {
+		return null;
 	}
 
 	@Override

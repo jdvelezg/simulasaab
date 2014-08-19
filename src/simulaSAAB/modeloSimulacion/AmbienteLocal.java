@@ -1,5 +1,6 @@
 package simulaSAAB.modeloSimulacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.Geometry;
@@ -7,6 +8,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import repast.simphony.context.Context;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import simulaSAAB.contextos.GeografiaFija;
+import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 import simulaSAAB.persistencia.RegionConfigurada;
 
@@ -63,6 +65,22 @@ public class AmbienteLocal implements GeografiaFija{
 	 */
 	public List<SistemaActividadHumana> getActividadesViables() {
 		return ActividadesViables;
+	}
+	/**
+	 * @return the actividadesViables
+	 */
+	public List<SistemaActividadHumana> getActividadesViables(Proposito p) {
+		
+		List<SistemaActividadHumana> matchlist = new ArrayList<SistemaActividadHumana>();
+		
+		for(SistemaActividadHumana a : this.ActividadesViables){
+			
+			if(a.getProposito().equals(p)){
+				matchlist.add(a);
+			}
+		}
+		
+		return matchlist;
 	}
 	/**
 	 * @return the ambienteID

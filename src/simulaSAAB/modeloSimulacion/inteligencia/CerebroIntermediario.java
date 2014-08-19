@@ -51,11 +51,11 @@ public class CerebroIntermediario implements CerebroDeDecision, CerebroDeAprendi
 		
 		if(context.getProjection(VariablesGlobales.RED_AGRORED)!= null){
 			
-			propositos.add(new Proposito(new Accion("Comprar"),new Item(p.getNombre(),"Producto"),"en la ubicación de oferta con menor valor"));
+			propositos.add(new Proposito(new Accion("Comprar"),new Item(p.getNombre(),"Producto"),"en la ubicaciï¿½n de oferta con menor valor"));
 		}
 		else if (context.getProjection(VariablesGlobales.RED_NUTRIRED) != null){ 
 		
-				propositos.add(new Proposito(new Accion("Vender"),new Item(p.getNombre(),"Producto"),"en la ubicación de demanda con mayor valor"));
+				propositos.add(new Proposito(new Accion("Vender"),new Item(p.getNombre(),"Producto"),"en la ubicaciï¿½n de demanda con mayor valor"));
 			}
 		
 		}
@@ -76,7 +76,7 @@ public class CerebroIntermediario implements CerebroDeDecision, CerebroDeAprendi
 		return null;
 	}
 
-	@Override
+	
 	public SistemaActividadHumana escogerSistemaActividadHumana(
 			List<Proposito> propositos, List<SistemaActividadHumana> actividades) {
 		// TODO Auto-generated method stub
