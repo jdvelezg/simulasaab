@@ -39,7 +39,7 @@ public class CerebroIntermediario implements CerebroDeDecision, CerebroDeAprendi
 		ArrayList<Proposito> propositos = new ArrayList<Proposito>();
 		
 		//Lista productos en orden
-		productos = new ConfiguracionStatelessEJB("ASC").obtenerProductosConfigurados(productos);
+		//productos = new ConfiguracionStatelessEJB("ASC").obtenerProductosConfigurados(productos);
 		
 		Object inter = this.intermediario;
 		
