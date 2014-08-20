@@ -38,17 +38,18 @@ public class Experiencia implements Concepto {
 	 * @param a
 	 * @param puntaje
 	 */
-	public Experiencia(SistemaActividadHumana a, double puntaje){
-		
-		this.PuntajeUtilidad		= 0;
-		this.NumeroEjecuciones 		= 0;
-		this.EjecucionesExitosas 	= 0;
-		this.utilidad				= 0;
+	public Experiencia(SistemaActividadHumana a, double utilidad){
 		
 		consecutivo++;
+		
+		this.PuntajeUtilidad	 = 0;
+		this.NumeroEjecuciones 	 = 0;
+		this.EjecucionesExitosas = 0;
+		
 		this.id					= consecutivo+1;
 		this.proposito			= a.getProposito();
 		this.ActividadEjecutada	= a;
+		this.utilidad			= utilidad;
 		
 	}
 
