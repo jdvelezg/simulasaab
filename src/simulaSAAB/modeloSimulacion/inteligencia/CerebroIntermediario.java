@@ -56,7 +56,9 @@ public class CerebroIntermediario implements CerebroDeDecision, CerebroDeAprendi
 		else if (context.getProjection(VariablesGlobales.RED_NUTRIRED) != null){ 
 		
 				propositos.add(new Proposito(new Accion("Vender"),new Item(p.getNombre(),"Producto"),"en la ubicaci�n de demanda con mayor valor"));
-			}
+			}else{
+			propositos.add(new Proposito(new Accion("Comprar"),new Item(p.getNombre(),"Producto"),"en la tienda mas cercana"));
+		}
 		
 		}
 		
