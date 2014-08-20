@@ -5,6 +5,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 import repast.simphony.space.gis.Geography;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 import simulaSAAB.modeloSimulacion.comunicacion.Accion;
+import simulaSAAB.modeloSimulacion.comunicacion.ActividadConProposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 
@@ -73,6 +74,12 @@ public class Moverse implements SistemaActividadHumana {
 
 	@Override
 	public String getEnunciado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ActividadConProposito getConcepto() {
 		// TODO Auto-generated method stub
 		return null;
 	}

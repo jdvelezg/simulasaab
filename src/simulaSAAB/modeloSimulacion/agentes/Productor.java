@@ -1,6 +1,7 @@
 package simulaSAAB.modeloSimulacion.agentes;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import repast.simphony.engine.schedule.ScheduledMethod;
@@ -36,6 +37,8 @@ public class Productor extends ActorDeAbastecimiento {
 	private SistemaActividadHumana actividadVigente;
 	
 	private List<Experiencia> Experiencia;
+	
+	private Utilidad UltimaUtilidadReal;
 	
 	/**
 	 * Constructor de la clase Productor
@@ -284,6 +287,36 @@ public class Productor extends ActorDeAbastecimiento {
 	 */
 	public void setExperiencia(List<Experiencia> experiencia) {
 		Experiencia = experiencia;
+	}
+	
+	/**
+	 * Filtra la experiencia a aquellos que concuerdan con la actividad.
+	 * Si la experiencia no existe, devuelve null.
+	 * @param act Sistema de actividad humana con proposito definido
+	 * @return Experiencia relacionada al sistema de actividad humana. 
+	 */
+	@Override
+	public Experiencia getExperiencia(SistemaActividadHumana act) {
+		
+		Iterator<Experiencia> iter 		= this.Experiencia.iterator();
+		Experiencia exp		= null;
+		boolean flag		= true;
+		
+		while(flag && iter.hasNext()){
+			
+			exp = iter.next();
+			if(exp.getActividadEjecutada().equals(act)){
+				flag=false;
+			}
+		}
+		
+		return exp;
+	}
+
+	@Override
+	public Utilidad getUltimaUtilidadObtenida() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

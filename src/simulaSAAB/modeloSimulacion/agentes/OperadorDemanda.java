@@ -9,6 +9,7 @@ import simulaSAAB.modeloSimulacion.comunicacion.Demanda;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 
 /**
  * @author dampher
@@ -71,6 +72,12 @@ public class OperadorDemanda extends OperadorSaab {
 	public void negociacionYCompra() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Experiencia getExperiencia(SistemaActividadHumana act) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

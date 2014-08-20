@@ -3,6 +3,7 @@ package simulaSAAB.modeloSimulacion.tareas;
 import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 import simulaSAAB.modeloSimulacion.agentes.Productor;
+import simulaSAAB.modeloSimulacion.comunicacion.ActividadConProposito;
 
 public class ProducirCebolla extends ProducirCebollaBulbo {
 	
@@ -86,6 +87,12 @@ public class ProducirCebolla extends ProducirCebollaBulbo {
 
 	@Override
 	public String getEnunciado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ActividadConProposito getConcepto() {
 		// TODO Auto-generated method stub
 		return null;
 	}

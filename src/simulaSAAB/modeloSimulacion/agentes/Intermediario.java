@@ -226,6 +226,13 @@ public class Intermediario extends ActorDeAbastecimiento {
 	public void setActividadVigente(SistemaActividadHumana actividadVigente) {
 		this.actividadVigente = actividadVigente;
 	}
+
+	@Override
+	public simulaSAAB.modeloSimulacion.comunicacion.Experiencia getExperiencia(
+			SistemaActividadHumana act) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

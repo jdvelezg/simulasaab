@@ -14,19 +14,23 @@ public class Experiencia implements Concepto {
 	
 	private int NumeroEjecuciones;
 	
+	private int EjecucionesExitosas;
+	
 	private Proposito proposito;
 	
 	private double utilidad;
 	
-	private double MayorUtilidad;
-	
-	private ActividadConProposito ActividadEjecutada;
+	private SistemaActividadHumana ActividadEjecutada;
 	
 	/**
 	 * Constructor
 	 */
 	public Experiencia(){
 		
+		this.PuntajeUtilidad		= 0;
+		this.NumeroEjecuciones 		= 0;
+		this.EjecucionesExitosas 	= 0;
+		this.utilidad				= 0;
 	}
 	
 	/**
@@ -36,10 +40,15 @@ public class Experiencia implements Concepto {
 	 */
 	public Experiencia(SistemaActividadHumana a, double puntaje){
 		
+		this.PuntajeUtilidad		= 0;
+		this.NumeroEjecuciones 		= 0;
+		this.EjecucionesExitosas 	= 0;
+		this.utilidad				= 0;
+		
 		consecutivo++;
 		this.id					= consecutivo+1;
 		this.proposito			= a.getProposito();
-		this.ActividadEjecutada	= new ActividadConProposito(a);
+		this.ActividadEjecutada	= a;
 		
 	}
 
@@ -128,10 +137,11 @@ public class Experiencia implements Concepto {
 	}
 
 	/**
+	 * Devuelve el promedio de utilidad obtenido en la ejecución de la actividad relacionada a la experiencia
 	 * @return the utilidad
 	 */
 	public double getUtilidad() {
-		return utilidad;
+		return this.utilidad/this.NumeroEjecuciones;
 	}
 
 	/**
@@ -142,31 +152,31 @@ public class Experiencia implements Concepto {
 	}
 
 	/**
-	 * @return the mayorUtilidad
-	 */
-	public double getMayorUtilidad() {
-		return MayorUtilidad;
-	}
-
-	/**
-	 * @param mayorUtilidad the mayorUtilidad to set
-	 */
-	public void setMayorUtilidad(double mayorUtilidad) {
-		MayorUtilidad = mayorUtilidad;
-	}
-
-	/**
 	 * @return the actividadEjecutada
 	 */
-	public ActividadConProposito getActividadEjecutada() {
+	public SistemaActividadHumana getActividadEjecutada() {
 		return ActividadEjecutada;
 	}
 
 	/**
 	 * @param actividadEjecutada the actividadEjecutada to set
 	 */
-	public void setActividadEjecutada(ActividadConProposito actividadEjecutada) {
-		ActividadEjecutada = actividadEjecutada;
+	public void setActividadEjecutada(SistemaActividadHumana act) {
+		ActividadEjecutada = act;
+	}
+
+	/**
+	 * @return the ejecucionesExitosas
+	 */
+	public int getEjecucionesExitosas() {
+		return EjecucionesExitosas;
+	}
+
+	/**
+	 * @param ejecucionesExitosas the ejecucionesExitosas to set
+	 */
+	public void setEjecucionesExitosas(int ejecucionesExitosas) {
+		EjecucionesExitosas = ejecucionesExitosas;
 	}
 	
 	

@@ -22,6 +22,12 @@ public interface CerebroDeDecision extends Cerebro {
 		
 		List<SistemaActividadHumana> Actividades;
 		
+		/**
+		 * Segun los propositos, el ambiente y el agente decide cuales sistemas de actividad humana debería ejecutar buscando la mejor utilidad.
+		 * @param propositos
+		 * @param amb
+		 * @param agente
+		 */
 		public void escogerSistemaActividadHumana(List<Proposito> propositos,AmbienteLocal amb, AgenteSaab agente){
 			
 			this.Actividades = new ArrayList<SistemaActividadHumana>();
@@ -34,17 +40,29 @@ public interface CerebroDeDecision extends Cerebro {
 				if(experiencia.size()==0){
 					this.Actividades.add(act.get(0));
 				}else{
-					Collections.sort(experiencia,new ExperenciaComparator());
-					//this.Actividades.add(experiencia.) Obtiene la actividad con proposito en la ubicacion 0
+					//Organiza el listado de experiencia segun e puntaje de utilidad
+					Collections.sort(experiencia,new ExperenciaPuntajeComparator());
+					//Agrega el de mayor puntaje de utilidad
+					this.Actividades.add(experiencia.get(0).getActividadEjecutada());
 				}
 			}					
+		}
+		
+		/**
+		 * Devuelve las actividades agregadas al ejecutar el metodo escogerSistemaActividadHumana.
+		 * Si el metodo no ha sido llamado, devuelve null.
+		 * @return
+		 */
+		public List<SistemaActividadHumana> getActividades(){
+			return Actividades;
 		}
 		
 	}
 
 }
 
-class ExperenciaComparator implements Comparator<Experiencia>{
+
+class ExperenciaPuntajeComparator implements Comparator<Experiencia>{
 
 	@Override
 	public int compare(Experiencia arg0, Experiencia arg1) {

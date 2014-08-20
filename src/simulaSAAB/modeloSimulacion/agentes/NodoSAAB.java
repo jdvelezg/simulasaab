@@ -7,6 +7,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 
 public class NodoSAAB extends NodoLogistico {
 	
@@ -97,6 +98,12 @@ public class NodoSAAB extends NodoLogistico {
 	 */
 	public void addOperadoresLogisticos(AgenteSaab operadorLogistico) {
 		OperadoresLogisticos.add(operadorLogistico);
+	}
+
+	@Override
+	public Experiencia getExperiencia(SistemaActividadHumana act) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
