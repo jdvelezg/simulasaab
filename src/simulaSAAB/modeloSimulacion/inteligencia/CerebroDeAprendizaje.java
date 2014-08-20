@@ -28,8 +28,9 @@ public interface CerebroDeAprendizaje extends Cerebro {
 			
 			
 			if(exp==null){
-				exp = new Experiencia();
+				exp = new Experiencia(act,agente.getUltimaUtilidadObtenida());
 				exp.setNumeroEjecuciones(1);
+				agente.addExperiencia(exp);
 			}else{
 				exp.setNumeroEjecuciones(exp.getNumeroEjecuciones()+1);
 			}
