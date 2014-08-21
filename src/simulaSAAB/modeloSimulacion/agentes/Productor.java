@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 import repast.simphony.engine.schedule.ScheduledMethod;
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
@@ -20,13 +22,17 @@ public class Productor extends ActorDeAbastecimiento {
 	
 	private int AgentID;
 	
+	private static Objetivo Objetivo;
+	
 	private String Nombre;
 	
-	private String Estado;
-	
-	private Objetivo Objetivo;
+	private Geometry geometria;	
+
+	private String Estado;	
 	
 	private Item Dinero;
+	
+	private List<Item> Posesiones;
 
 	private List<Terreno> TerrenosCultivables;
 	
@@ -323,6 +329,26 @@ public class Productor extends ActorDeAbastecimiento {
 	public double getUltimaUtilidadObtenida() {
 		return this.UltimaUtilidadObtenida;
 	}	
+	
+	public Geometry getGeometria() {
+		return geometria;
+	}
+
+	public void setGeometria(Geometry geometria) {
+		this.geometria = geometria;
+	}
+
+	public void setUltimaUtilidadObtenida(double ultimaUtilidadObtenida) {
+		UltimaUtilidadObtenida = ultimaUtilidadObtenida;
+	}
+
+	public List<Item> getPosesiones() {
+		return Posesiones;
+	}
+
+	public void addPosesiones(Item p) {
+		this.Posesiones.add(p);
+	}
 	
 	
 }
