@@ -18,9 +18,11 @@ public interface AgenteSaab {
 	
 	List<Experiencia> getExperiencia(Proposito p);
 	
+	Experiencia getExperiencia(SistemaActividadHumana act);
+	
 	SistemaActividadHumana getActividadVigente();
 	
-	Experiencia getExperiencia(SistemaActividadHumana act);
+	void setEstado(String e);
 	
 	void addExperiencia(Experiencia e);
 	
