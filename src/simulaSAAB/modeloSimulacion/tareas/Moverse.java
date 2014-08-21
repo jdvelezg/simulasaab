@@ -15,7 +15,7 @@ public class Moverse implements SistemaActividadHumana {
 	
 	private int velocidad;
 	
-	private Geography<AgenteSaab> geography;
+	private Geography<Object> geography;
 	
 	private EstadoActividad estado;
 	
@@ -25,7 +25,7 @@ public class Moverse implements SistemaActividadHumana {
 	 * @param destino: Coordenada donde termina el movimiento
 	 * @param velocidad: coeficiente de velocidad que limita el desplazamiento
 	 */
-	public Moverse(Coordinate destino,int velocidad, Geography<AgenteSaab> gis){		
+	public Moverse(Coordinate destino,int velocidad, Geography<Object> gis){		
 		this.destino	=destino;
 		this.velocidad	=velocidad;
 		this.geography	=gis;
