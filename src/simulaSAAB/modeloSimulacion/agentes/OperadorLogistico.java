@@ -192,6 +192,19 @@ public class OperadorLogistico extends ActorDeAbastecimiento {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void addExperiencia(
+			simulaSAAB.modeloSimulacion.comunicacion.Experiencia e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getUltimaUtilidadObtenida() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 

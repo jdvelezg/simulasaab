@@ -14,13 +14,13 @@ import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 
 public interface CerebroDeDecision extends Cerebro {
 	
-	public  List<Proposito> fijarPropositos(List<Producto> productos);	
+	public  Proposito fijarProposito(List<Producto> productos);	
 	
-	//public  SistemaActividadHumana escogerSistemaActividadHumana(List<Proposito> propositos,List<SistemaActividadHumana> actividades);
+	public  SistemaActividadHumana escogerSistemaActividadHumana(Proposito proposito,List<SistemaActividadHumana> actividades);
 	
 	class FijarSistemasActividadHumana{
 		
-		List<SistemaActividadHumana> Actividades;
+		SistemaActividadHumana Actividad;
 		
 		/**
 		 * Segun los propositos, el ambiente y el agente decide cuales sistemas de actividad humana debería ejecutar buscando la mejor utilidad.
@@ -28,34 +28,22 @@ public interface CerebroDeDecision extends Cerebro {
 		 * @param amb
 		 * @param agente
 		 */
-		public void escogerSistemaActividadHumana(List<Proposito> propositos,AmbienteLocal amb, AgenteSaab agente){
-			
-			this.Actividades = new ArrayList<SistemaActividadHumana>();
-			
-			for(Proposito p: propositos){
+		public SistemaActividadHumana escogerSistemaActividadHumana(Proposito p,List<SistemaActividadHumana> act, AgenteSaab agente){
+						
+			List<Experiencia> experiencia = agente.getExperiencia(p);
 				
-				List<SistemaActividadHumana> act 	= amb.getActividadesViables(p);
-				List<Experiencia> experiencia	 	= agente.getExperiencia(p);
-				
-				if(experiencia.size()==0){
-					this.Actividades.add(act.get(0));
-				}else{
-					//Organiza el listado de experiencia segun e puntaje de utilidad
-					Collections.sort(experiencia,new ExperenciaPuntajeComparator());
-					//Agrega el de mayor puntaje de utilidad
-					this.Actividades.add(experiencia.get(0).getActividadEjecutada());
+			if(experiencia.size()==0){
+				//Si no tiene experiencia devuelve la primera actividad de la lista
+				this.Actividad = act.get(0);
+			}else{
+				//Organiza el listado de experiencia segun el puntaje de utilidad
+				Collections.sort(experiencia,new ExperenciaPuntajeComparator());
+				//Escoge la de mayor puntaje de utilidad
+				this.Actividad = experiencia.get(0).getActividadEjecutada();
 				}
-			}					
-		}
-		
-		/**
-		 * Devuelve las actividades agregadas al ejecutar el metodo escogerSistemaActividadHumana.
-		 * Si el metodo no ha sido llamado, devuelve null.
-		 * @return
-		 */
-		public List<SistemaActividadHumana> getActividades(){
-			return Actividades;
-		}
+			
+			return Actividad;
+		}		
 		
 	}
 

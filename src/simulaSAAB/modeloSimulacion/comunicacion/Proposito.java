@@ -13,6 +13,13 @@ public class Proposito implements Concepto {
 	
 	/**
 	 * Constructor
+	 */
+	public Proposito(){
+		
+	}
+	
+	/**
+	 * Constructor
 	 * @param accion
 	 * @param pretencion
 	 * @param complemento

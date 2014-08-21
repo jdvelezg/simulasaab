@@ -13,6 +13,7 @@ import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
+import simulaSAAB.modeloSimulacion.inteligencia.CerebroIntermediario;
 import simulaSAAB.modeloSimulacion.inteligencia.CerebroProductor;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 import simulaSAAB.persistencia.AgenteConfigurado;
@@ -35,7 +36,7 @@ public class Intermediario extends ActorDeAbastecimiento {
 
 	private List<Item> Posesiones;
 	
-	//private CerebroIntermediario Cerebro;
+	private CerebroIntermediario Cerebro;
 	
 	private Proposito PropositoVigente;
 	
@@ -93,7 +94,10 @@ public class Intermediario extends ActorDeAbastecimiento {
 	 */
 	@Override
 	public void formarIntenciones(List<Producto> productos) {
-		// TODO Auto-generated method stub
+		// TODO devuelve propositos viables
+		
+		List<SistemaActividadHumana> ActividadesEjecutables =new ArrayList();		
+		this.PropositoVigente = this.Cerebro.fijarProposito(productos);
 
 	}
 
@@ -232,6 +236,19 @@ public class Intermediario extends ActorDeAbastecimiento {
 			SistemaActividadHumana act) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void addExperiencia(
+			simulaSAAB.modeloSimulacion.comunicacion.Experiencia e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getUltimaUtilidadObtenida() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

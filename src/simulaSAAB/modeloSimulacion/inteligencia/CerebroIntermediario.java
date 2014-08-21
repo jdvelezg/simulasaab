@@ -10,11 +10,15 @@ import repast.simphony.space.projection.Projection;
 import repast.simphony.util.ContextUtils;
 import repast.simphony.context.Context;
 import simulaSAAB.main.VariablesGlobales;
+import simulaSAAB.modeloSimulacion.AmbienteLocal;
 import simulaSAAB.modeloSimulacion.Producto;
+import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 import simulaSAAB.modeloSimulacion.agentes.Intermediario;
 import simulaSAAB.modeloSimulacion.comunicacion.Accion;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.inteligencia.CerebroDeAprendizaje.EvaluarExperiencia;
+import simulaSAAB.modeloSimulacion.inteligencia.CerebroDeDecision.FijarSistemasActividadHumana;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 import simulaSAAB.persistencia.ConfiguracionStatelessEJB;
 
@@ -33,10 +37,10 @@ public class CerebroIntermediario implements CerebroDeDecision, CerebroDeAprendi
 	}
 	
 	@Override
-	public List<Proposito> fijarPropositos(List<Producto> productos){
+	public Proposito fijarProposito(List<Producto> productos){
 		
 		//Inicializa el proposito
-		ArrayList<Proposito> propositos = new ArrayList<Proposito>();
+		Proposito proposito = new Proposito();
 		
 		//Lista productos en orden
 		//productos = new ConfiguracionStatelessEJB("ASC").obtenerProductosConfigurados(productos);
@@ -49,40 +53,37 @@ public class CerebroIntermediario implements CerebroDeDecision, CerebroDeAprendi
 		
 		for(Producto p: productos){
 		
-		if(context.getProjection(VariablesGlobales.RED_AGRORED)!= null){
-			
-			propositos.add(new Proposito(new Accion("Comprar"),new Item(p.getNombre(),"Producto"),"en la ubicaci�n de oferta con menor valor"));
-		}
-		else if (context.getProjection(VariablesGlobales.RED_NUTRIRED) != null){ 
-		
-				propositos.add(new Proposito(new Accion("Vender"),new Item(p.getNombre(),"Producto"),"en la ubicaci�n de demanda con mayor valor"));
+			if(context.getProjection(VariablesGlobales.RED_AGRORED)!= null){		
+				proposito.setAccion(new Accion("Comprar"));
+				proposito.setPretencion(new Item(p.getNombre(),"Producto"));
+				proposito.setComplemento("en la ubicacion de oferta con menor valor");
+			}
+			else if (context.getProjection(VariablesGlobales.RED_NUTRIRED) != null){
+				proposito.setAccion(new Accion("Vender"));
+				proposito.setPretencion(new Item(p.getNombre(),"Producto"));
+				proposito.setComplemento("en la ubicacion de demanda con mayor valor");
 			}else{
-			propositos.add(new Proposito(new Accion("Comprar"),new Item(p.getNombre(),"Producto"),"en la tienda mas cercana"));
-		}
+				proposito.setAccion(new Accion("Comprar"));
+				proposito.setPretencion(new Item(p.getNombre(),"Producto"));
+				proposito.setComplemento("en la tienda mas cercana");				
+			}
 		
 		}
 		
-		return propositos;
+		return proposito;
 	}
 
+	@Override
+	public SistemaActividadHumana escogerSistemaActividadHumana(Proposito proposito,List<SistemaActividadHumana> actividades) {
+		
+		return new FijarSistemasActividadHumana().escogerSistemaActividadHumana(proposito, actividades, this.intermediario);
+	}	
+	
 	@Override
 	public void evaluarExperiencia() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public List<SistemaActividadHumana> recordarExperiencia(
-			List<SistemaActividadHumana> act) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	public SistemaActividadHumana escogerSistemaActividadHumana(
-			List<Proposito> propositos, List<SistemaActividadHumana> actividades) {
-		// TODO Auto-generated method stub
-		return null;
+		new EvaluarExperiencia().generarExperiencia(this.intermediario);
+		
 	}
 
 }

@@ -71,4 +71,16 @@ public class OperadorOferta extends OperadorSaab {
 		return null;
 	}
 
+	@Override
+	public void addExperiencia(Experiencia e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double getUltimaUtilidadObtenida() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

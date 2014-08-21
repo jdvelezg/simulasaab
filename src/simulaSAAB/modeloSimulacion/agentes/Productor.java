@@ -38,7 +38,7 @@ public class Productor extends ActorDeAbastecimiento {
 	
 	private List<Experiencia> Experiencia;
 	
-	private Utilidad UltimaUtilidadReal;
+	private double UltimaUtilidadObtenida;
 	
 	/**
 	 * Constructor de la clase Productor
@@ -86,20 +86,16 @@ public class Productor extends ActorDeAbastecimiento {
 	public void formarIntenciones(List<Producto> productos) {
 		// TODO devuelve propositos viables	
 		
-		List<SistemaActividadHumana> ActividadesEjecutables =new ArrayList();
+		List<SistemaActividadHumana> ActividadesEjecutables =new ArrayList();		
+		this.PropositoVigente = this.CerebroProductor.fijarProposito(productos);		
 		
-		List<Proposito> propositos =new ArrayList();		
-		propositos.addAll(this.CerebroProductor.fijarPropositos(productos));
-		
-		for(Terreno finca : TerrenosCultivables){
-			
+		for(Terreno finca : TerrenosCultivables){			
 			ActividadesEjecutables.addAll(finca.getAmbiente().getActividadesViables());
 		}		
 		
 		//Escoge actividad a ejecutar
-		this.actividadVigente 	=this.CerebroProductor.escogerSistemaActividadHumana(propositos, ActividadesEjecutables);
-		this.PropositoVigente	=this.actividadVigente.getProposito();
-		
+		this.actividadVigente = this.CerebroProductor.escogerSistemaActividadHumana(this.PropositoVigente, ActividadesEjecutables);
+		//Cambia estado a -Con proposito-	
 		this.estado = "PURPOSEFULL";
 	}
 
@@ -290,6 +286,16 @@ public class Productor extends ActorDeAbastecimiento {
 	}
 	
 	/**
+	 * Agrega euna nueva experiencia al set de experiencias del agente
+	 * @param e experiencia para adicionar
+	 */
+	@Override
+	public void addExperiencia(Experiencia e) {
+		this.Experiencia.add(e);		
+	}
+	
+	
+	/**
 	 * Filtra la experiencia a aquellos que concuerdan con la actividad.
 	 * Si la experiencia no existe, devuelve null.
 	 * @param act Sistema de actividad humana con proposito definido
@@ -314,13 +320,9 @@ public class Productor extends ActorDeAbastecimiento {
 	}
 
 	@Override
-	public Utilidad getUltimaUtilidadObtenida() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-	
+	public double getUltimaUtilidadObtenida() {
+		return this.UltimaUtilidadObtenida;
+	}	
 	
 	
 }

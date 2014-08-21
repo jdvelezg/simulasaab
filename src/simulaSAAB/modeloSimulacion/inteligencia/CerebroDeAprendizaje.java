@@ -13,14 +13,16 @@ public interface CerebroDeAprendizaje extends Cerebro {
 	
 	public void evaluarExperiencia();
 	
-	public List<SistemaActividadHumana> recordarExperiencia(List<SistemaActividadHumana> act);
+	//public List<SistemaActividadHumana> recordarExperiencia(List<SistemaActividadHumana> act);
+	
 	
 	class EvaluarExperiencia{
 		
 		Experiencia experiencia;
 		
-		public void generarExperiencia(SistemaActividadHumana act, AgenteSaab agente){
+		public void generarExperiencia(AgenteSaab agente){
 			
+			SistemaActividadHumana act		= agente.getActividadVigente();
 			Proposito p						= act.getProposito();
 			List<Experiencia> experiencia	= agente.getExperiencia(p);
 			Experiencia exp					= agente.getExperiencia(act);
