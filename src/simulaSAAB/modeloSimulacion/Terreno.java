@@ -1,21 +1,40 @@
 package simulaSAAB.modeloSimulacion;
 
+import repast.simphony.random.RandomHelper;
+
 import com.vividsolutions.jts.geom.Coordinate;
 
 public class Terreno {	
 	
 	private int Hectareas;
+	
 	private double HaUsadas;
+	
 	private String usoSuelo;	
-	private AmbienteLocal ambiente;
+	
+	private AmbienteLocal ambiente;	
 	
 	private final Coordinate coordenadas;
+	
+	private String Estado;
 	
 	/**
 	 * Constructor
 	 */
 	public Terreno(Coordinate c){
 		this.coordenadas = c;
+	}
+	
+	/**
+	 * Devuelve la cantidad de productos producidos en el terreno.
+	 * Usa el rendimiento promedio por hectarea del producto y genera una cantidad aleatoria
+	 * que supera el promedio hasta en un 50%.
+	 * @param p El producto a cosechar.
+	 * @return La cantidad de producto en su unidad de medida.
+	 */
+	public double cosechar(Producto p){		
+		
+		return (p.getRendimientohectarea()*RandomHelper.nextDoubleFromTo(0, 1.5))*this.HaUsadas;
 	}
 	
 	/**
@@ -93,5 +112,15 @@ public class Terreno {
 	public void setHaUsadas(double haUsadas) {
 		HaUsadas = haUsadas;
 	}
+
+	public String getEstado() {
+		return Estado;
+	}
+
+	public void setEstado(String estado) {
+		Estado = estado;
+	}
+	
+	
 
 }
