@@ -7,6 +7,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 
 public class NodoSAAB extends NodoLogistico {
@@ -116,6 +117,24 @@ public class NodoSAAB extends NodoLogistico {
 	public double getUltimaUtilidadObtenida() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void addRecurso(Recurso recurso) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public SistemaActividadHumana getActividadVigente() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setEstado(String e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

@@ -9,6 +9,7 @@ import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
 import simulaSAAB.modeloSimulacion.inteligencia.CerebroProductor;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
@@ -204,6 +205,12 @@ public class OperadorLogistico extends ActorDeAbastecimiento {
 	public double getUltimaUtilidadObtenida() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void addRecurso(Recurso recurso) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

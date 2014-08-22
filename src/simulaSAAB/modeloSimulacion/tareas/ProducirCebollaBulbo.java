@@ -4,7 +4,10 @@ import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 import simulaSAAB.modeloSimulacion.comunicacion.Accion;
+import simulaSAAB.modeloSimulacion.comunicacion.Concepto;
+import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.persistencia.MPAConfigurado;
 import simulaSAAB.persistencia.ProductoConfigurado;
 
@@ -36,13 +39,14 @@ public abstract class ProducirCebollaBulbo implements SistemaActividadHumana {
 		this.CostoEjecucion	=mpa.getCosto();
 		this.terreno		=t;	
 		
+		this.Estado = EstadoActividad.READY.toString();
 	}
 
 	@Override
 	public Proposito getProposito() {
 		return this.proposito;
 	}
-	
+		
 	/**
 	 * 
 	 */
@@ -53,7 +57,7 @@ public abstract class ProducirCebollaBulbo implements SistemaActividadHumana {
 			this.Estado	=EstadoActividad.RUNNING.toString();
 			this.paso	=1;			
 		}
-		else{			
+		else if(this.Estado.compareToIgnoreCase(EstadoActividad.RUNNING.toString())==1){			
 			
 			switch(this.paso){
 			case 1:
@@ -86,15 +90,25 @@ public abstract class ProducirCebollaBulbo implements SistemaActividadHumana {
 				break;
 			case 5:
 				
-				
+				actor.addRecurso(this.terreno.cosechar(cebollaBulbo));			
 				
 				this.paso++;				
+				break;
+			case 6:
+				//ejecuta subsistema de actividad
+				
+				//verifica si el sistema termino
+				
+				//si termina suma un paso
+				//this.paso++;				
 				break;
 			default:
 				this.Estado ="DONE";
 			}
 			
-		}	
+		}else if(this.Estado.compareToIgnoreCase(EstadoActividad.DONE.toString())==1){
+			
+		}
 	}
 
 }

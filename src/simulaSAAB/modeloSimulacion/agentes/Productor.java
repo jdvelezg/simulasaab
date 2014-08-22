@@ -4,23 +4,36 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 
+import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunState;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.space.gis.Geography;
+import repast.simphony.space.projection.Projection;
+import repast.simphony.util.ContextUtils;
+
+import simulaSAAB.main.VariablesGlobales;
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
+import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.inteligencia.CerebroProductor;
+import simulaSAAB.modeloSimulacion.tareas.Moverse;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 import simulaSAAB.persistencia.AgenteConfigurado;
 
 public class Productor extends ActorDeAbastecimiento {
 	
 	private int AgentID;
+	
+	private Geography<Object> gis;
 	
 	private static Objetivo Objetivo;
 	
@@ -32,7 +45,7 @@ public class Productor extends ActorDeAbastecimiento {
 	
 	private Item Dinero;
 	
-	private List<Item> Posesiones;
+	private List<Recurso> Recursos;
 
 	private List<Terreno> TerrenosCultivables;
 	
@@ -53,12 +66,40 @@ public class Productor extends ActorDeAbastecimiento {
 	public Productor(String tipo){		
 		
 		AgenteConfigurado agt 	=new AgenteConfigurado("Productor");
+		
 		this.Nombre				=agt.getTipo();
 		this.Objetivo 			=agt.getObjetivo();
 		this.CerebroProductor	=new CerebroProductor(this);
-		
-		this.estado = "IDLE";
+				
+		this.estado = "IDLE";		
 	}
+	
+	/**
+	 * Metodo que ejecuta el comportamiento del agente en cada ciclo de reloj enviado por repast
+	 */
+	@ScheduledMethod (start = 1, interval = 100)
+	public void step () {
+		
+		if(actividadVigente!=null){
+			actividadVigente.secuenciaPrincipalDeAcciones(this);
+		}else{
+			//PRUEBAS
+			
+			Coordinate c = new Coordinate(this.geometria.getCoordinate().x+1,this.geometria.getCoordinate().y+1);
+			
+			if(gis!=null){
+				this.actividadVigente = new Moverse(c,0.2,(Geography<Object>)gis);
+				System.out.println("Listo para moverse");
+			}else{
+				System.out.println("No se encontro el GIS");
+			}
+			//FIN PRUEBAS
+		}
+			
+		
+		
+	}
+	
 
 	@Override
 	public void sendMessage() {
@@ -70,6 +111,21 @@ public class Productor extends ActorDeAbastecimiento {
 	public void receiveMessage() {
 		// TODO Auto-generated method stub
 
+	}
+	
+
+	/**
+	 * @return the gis
+	 */
+	public Geography getGis() {
+		return gis;
+	}
+
+	/**
+	 * @param gis the gis to set
+	 */
+	public void setGis(Geography gis) {
+		this.gis = gis;
 	}
 
 	@Override
@@ -119,11 +175,6 @@ public class Productor extends ActorDeAbastecimiento {
 
 	}
 	
-	@ScheduledMethod (start = 1, interval = 1)
-	public void step () {
-		
-	}
-
 	/**
 	 * @return the agentID
 	 */
@@ -212,6 +263,10 @@ public class Productor extends ActorDeAbastecimiento {
 	 * @param terrenosCultivables the terrenosCultivables to set
 	 */
 	public void addTerrenosCultivables(Terreno terrenoCultivable) {
+		
+		if(this.TerrenosCultivables==null)
+			this.TerrenosCultivables=new ArrayList();
+		
 		TerrenosCultivables.add(terrenoCultivable);
 	}
 
@@ -297,6 +352,10 @@ public class Productor extends ActorDeAbastecimiento {
 	 */
 	@Override
 	public void addExperiencia(Experiencia e) {
+		
+		if(this.Experiencia==null)
+			this.Experiencia = new ArrayList();
+		
 		this.Experiencia.add(e);		
 	}
 	
@@ -342,13 +401,18 @@ public class Productor extends ActorDeAbastecimiento {
 		UltimaUtilidadObtenida = ultimaUtilidadObtenida;
 	}
 
-	public List<Item> getPosesiones() {
-		return Posesiones;
+	public List<Recurso> getRecursos() {
+		return Recursos;
 	}
 
-	public void addPosesiones(Item p) {
-		this.Posesiones.add(p);
+	@Override
+	public void addRecurso(Recurso recurso) {
+		// TODO Auto-generated method stub
+		if(Recursos==null)
+			this.Recursos=new ArrayList();
+		
+		this.Recursos.add(recurso);
 	}
-	
+		
 	
 }

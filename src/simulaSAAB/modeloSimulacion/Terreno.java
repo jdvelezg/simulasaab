@@ -1,8 +1,10 @@
 package simulaSAAB.modeloSimulacion;
 
 import repast.simphony.random.RandomHelper;
+import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
 
 public class Terreno {	
 	
@@ -14,27 +16,44 @@ public class Terreno {
 	
 	private AmbienteLocal ambiente;	
 	
-	private final Coordinate coordenadas;
+	//private final Coordinate coordenadas;
+	
+	private final Geometry geom;
 	
 	private String Estado;
 	
 	/**
 	 * Constructor
 	 */
-	public Terreno(Coordinate c){
-		this.coordenadas = c;
+	public Terreno(Geometry g){
+		this.geom = g;
+		//this.coordenadas = c;
 	}
 	
 	/**
-	 * Devuelve la cantidad de productos producidos en el terreno.
+	 * 
+	 * @param hectareas
+	 * @param cords
+	 */
+	public Terreno(int hectareas, Geometry g){		
+		this.Hectareas		= hectareas;
+		this.geom			=g;
+		//this.coordenadas	= cords;		
+	}
+	
+	/**
+	 * Devuelve el recurso producido en el terreno.
 	 * Usa el rendimiento promedio por hectarea del producto y genera una cantidad aleatoria
-	 * que supera el promedio hasta en un 50%.
+	 * que puede superar el promedio hasta en un 25%.
+	 * 
 	 * @param p El producto a cosechar.
 	 * @return La cantidad de producto en su unidad de medida.
 	 */
-	public double cosechar(Producto p){		
+	public Recurso cosechar(Producto p){		
 		
-		return (p.getRendimientohectarea()*RandomHelper.nextDoubleFromTo(0, 1.5))*this.HaUsadas;
+		double cantidad = (p.getRendimientohectarea()*RandomHelper.nextDoubleFromTo(0, 1.25))*this.HaUsadas;
+		
+		return new Recurso(p.getConcepto(),cantidad);
 	}
 	
 	/**
@@ -75,9 +94,9 @@ public class Terreno {
 	/**
 	 * @return the coordenadas
 	 */
-	public Coordinate getCoordenadas() {
+	/*public Coordinate getCoordenadas() {
 		return coordenadas;
-	}
+	}*/
 	
 
 	/**
@@ -94,10 +113,7 @@ public class Terreno {
 		this.ambiente = ambiente;
 	}
 
-	public Terreno(int hectareas, Coordinate cords){		
-		this.Hectareas		= hectareas;
-		this.coordenadas	= cords;		
-	}
+	
 	/**
 	 * @return the haUsadas
 	 */
@@ -119,6 +135,13 @@ public class Terreno {
 
 	public void setEstado(String estado) {
 		Estado = estado;
+	}
+
+	/**
+	 * @return the geom
+	 */
+	public Geometry getGeom() {
+		return geom;
 	}
 	
 	

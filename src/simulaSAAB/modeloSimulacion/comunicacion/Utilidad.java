@@ -1,6 +1,6 @@
 package simulaSAAB.modeloSimulacion.comunicacion;
 
-public class Utilidad implements Concepto {
+public class Utilidad {
 	
 	private int ID;
 	

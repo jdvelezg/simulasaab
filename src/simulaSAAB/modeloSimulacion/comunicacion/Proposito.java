@@ -1,7 +1,7 @@
 package simulaSAAB.modeloSimulacion.comunicacion;
 
 
-public class Proposito implements Concepto {
+public class Proposito {
 	
 	private int id;	
 	

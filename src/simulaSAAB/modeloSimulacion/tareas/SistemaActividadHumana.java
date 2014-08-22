@@ -10,9 +10,7 @@ public interface SistemaActividadHumana {
 	
 	Proposito getProposito();
 	
-	String getEstado();
-	
-	ActividadConProposito getConcepto();
+	String getEstado();	
 	
 	void secuenciaPrincipalDeAcciones(AgenteSaab actor);
 

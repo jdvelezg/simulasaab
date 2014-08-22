@@ -1,12 +1,14 @@
 package simulaSAAB.modeloSimulacion.comunicacion;
 
-public class Item implements Concepto {
+public class Item {
 	
 	private int id;
 	
 	private String nombre;
 	
 	private String InstanceOf;
+	
+	private String UnidadDeMedida;
 	
 	/**
 	 * Constructor
@@ -61,5 +63,21 @@ public class Item implements Concepto {
 	public void setInstanceOf(String instanceOf) {
 		InstanceOf = instanceOf;
 	}
+
+	/**
+	 * @return the unidadDeMedida
+	 */
+	public String getUnidadDeMedida() {
+		return UnidadDeMedida;
+	}
+
+	/**
+	 * @param unidadDeMedida the unidadDeMedida to set
+	 */
+	public void setUnidadDeMedida(String unidadDeMedida) {
+		UnidadDeMedida = unidadDeMedida;
+	}
+	
+	
 
 }

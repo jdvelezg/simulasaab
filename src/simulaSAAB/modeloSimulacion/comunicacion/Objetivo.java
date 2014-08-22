@@ -2,7 +2,7 @@ package simulaSAAB.modeloSimulacion.comunicacion;
 
 import java.util.List;
 
-public class Objetivo implements Concepto {
+public class Objetivo {
 	
 	private int id;
 	

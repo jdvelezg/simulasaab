@@ -10,7 +10,7 @@ import simulaSAAB.modeloSimulacion.Producto;
  * @author dampher
  *
  */
-public class Demanda implements Concepto {
+public class Demanda {
 	
 	private int ID;
 	

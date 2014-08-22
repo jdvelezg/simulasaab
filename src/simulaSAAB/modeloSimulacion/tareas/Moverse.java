@@ -13,11 +13,13 @@ public class Moverse implements SistemaActividadHumana {
 			
 	private Coordinate destino;
 	
-	private int velocidad;
+	private double velocidad;
 	
 	private Geography<Object> geography;
 	
 	private EstadoActividad estado;
+	
+	private int paso;
 	
 	/**
 	 * Constructor
@@ -25,7 +27,7 @@ public class Moverse implements SistemaActividadHumana {
 	 * @param destino: Coordenada donde termina el movimiento
 	 * @param velocidad: coeficiente de velocidad que limita el desplazamiento
 	 */
-	public Moverse(Coordinate destino,int velocidad, Geography<Object> gis){		
+	public Moverse(Coordinate destino,double velocidad, Geography<Object> gis){		
 		this.destino	=destino;
 		this.velocidad	=velocidad;
 		this.geography	=gis;
@@ -47,28 +49,34 @@ public class Moverse implements SistemaActividadHumana {
 	@Override
 	public void secuenciaPrincipalDeAcciones(AgenteSaab actor) {
 		// TODO Auto-generated method stub
-		
-		Coordinate origen	=geography.getGeometry(actor).getCoordinate();
-		
-		if(destino.x-origen.x>velocidad){			
-			origen.x 	+=velocidad;						
-		}else{
-			origen.x = destino.x;
+		if(this.getEstado().compareToIgnoreCase(EstadoActividad.READY.toString())==0){
+			
+			this.estado = EstadoActividad.RUNNING;
+			this.paso=1;
+		}else if(this.getEstado().compareToIgnoreCase(EstadoActividad.RUNNING.toString())==0){
+			
+			Coordinate origen	=geography.getGeometry(actor).getCoordinate();
+			
+			if(destino.x-origen.x>velocidad){			
+				origen.x 	+=velocidad;						
+			}else{
+				origen.x = destino.x;
+			}
+			
+			if(destino.y-origen.y>velocidad){			
+				origen.y 	+=velocidad;						
+			}else{
+				origen.y = destino.y;
+			}
+			
+			geography.move(actor,geography.getGeometry(actor));
+			
+			if(origen.distance(destino)==0){
+				this.estado = estado.DONE;
+			}
 		}
 		
-		if(destino.y-origen.y>velocidad){			
-			origen.y 	+=velocidad;						
-		}else{
-			origen.y = destino.y;
-		}
 		
-		geography.move(actor,geography.getGeometry(actor));
-		
-		if(origen.distance(destino)==0){
-			this.estado = estado.DONE;
-		}else{
-			this.estado = estado.RUNNING;
-		}
 
 	}
 
@@ -77,11 +85,6 @@ public class Moverse implements SistemaActividadHumana {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ActividadConProposito getConcepto() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

@@ -289,21 +289,27 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		for(int i=0; i<=cantidad; i++){
 			
 			GeometryFactory geofact = new GeometryFactory();
-			Productor productor		= new Productor("Productor");
+			Productor productor		= new Productor("Productor"); 
+			
 			
 			Coordinate AgentCoord 	= new Coordinate(RandomHelper.nextDoubleFromTo(center.x,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].x),RandomHelper.nextDoubleFromTo(center.y,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].y));//center;			
 			Point geom 				= geofact.createPoint(AgentCoord);
 			
 			if(amb.getGeometria().intersects(geom.getGeometryN(0))){
 				
-				Point terrenogeom 		= geofact.createPoint(AgentCoord);
-				Terreno terreno			= new Terreno(AgentCoord);
+				Coordinate TerrCoord 	= new Coordinate(RandomHelper.nextDoubleFromTo(center.x,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].x),RandomHelper.nextDoubleFromTo(center.y,coords[RandomHelper.nextIntFromTo(0, coords.length-1)].y));//center;
+				Point terrenogeom 		= geofact.createPoint(TerrCoord);
+				Terreno terreno			= new Terreno(terrenogeom);
 				
 				contexto.add(productor);
 				contexto.add(terreno);
 				
 				geography.move(productor, geom);
-				geography.move(terreno, terrenogeom);			
+				geography.move(terreno, terreno.getGeom());			
+				
+				productor.setGis(geography);
+				productor.setGeometria(geom);
+				productor.addTerrenosCultivables(terreno);
 				
 				/*System.out.println("Productor inside");
 				if(geom.equals(terrenogeom))

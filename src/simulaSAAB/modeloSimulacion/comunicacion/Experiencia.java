@@ -2,7 +2,7 @@ package simulaSAAB.modeloSimulacion.comunicacion;
 
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 
-public class Experiencia implements Concepto {
+public class Experiencia {
 	
 	private static int consecutivo;
 	

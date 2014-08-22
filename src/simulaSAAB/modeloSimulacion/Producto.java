@@ -1,8 +1,10 @@
 package simulaSAAB.modeloSimulacion;
 
+import simulaSAAB.modeloSimulacion.comunicacion.Concepto;
+import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.persistencia.ProductoConfigurado;
 
-public class Producto {
+public class Producto implements Concepto {
 	
 	private String nombre;
 	
@@ -188,6 +190,13 @@ public class Producto {
 	 */
 	public void setCantidad(int cantidad) {
 		Cantidad = cantidad;
+	}
+
+	@Override
+	public Item getConcepto() {
+		// TODO Devuelve una representacion conceptual del producto
+		
+		return new Item(this.nombre,this.getClass().getName());
 	}
 	
 	

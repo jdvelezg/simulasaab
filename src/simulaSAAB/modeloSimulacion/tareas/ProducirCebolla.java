@@ -91,10 +91,6 @@ public class ProducirCebolla extends ProducirCebollaBulbo {
 		return null;
 	}
 
-	@Override
-	public ActividadConProposito getConcepto() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }
