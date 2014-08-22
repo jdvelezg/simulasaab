@@ -19,15 +19,9 @@ public abstract class ActorDeAbastecimiento implements AgenteSaab {
 	
 	public abstract Utilidad actuar();
 	
-	public abstract void juzgarMundoSegunEstandares(Utilidad resultar);
+	public abstract void juzgarMundoSegunEstandares(Utilidad resultar);	
 	
-	
-	public void ejecutarActividadesConProposito(){		
-		
-		formarIntenciones(atribuirSignificadoAlMundoPercibido());	
-		
-		juzgarMundoSegunEstandares(actuar());		
-		
-	}
+	public abstract void ejecutarActividadesConProposito();
 
 }
+
