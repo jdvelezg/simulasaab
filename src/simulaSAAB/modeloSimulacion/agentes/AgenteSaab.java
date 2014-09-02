@@ -105,7 +105,12 @@ public interface AgenteSaab {
 	 * Evalua la experiencia sobre la ultima actividad ejecutada de acuerdo con la utilidad obtenida.
 	 * @param resultado Utilidad obtenida.
 	 */
-	public void juzgarMundoSegunEstandares(Utilidad resultado);		
+	public void juzgarMundoSegunEstandares(Utilidad resultado);
+	
+	/**
+	 * Devuelve la geometria asignada al agente en la proyección
+	 */
+	public Geometry getGeometria();
 	
 
 }
