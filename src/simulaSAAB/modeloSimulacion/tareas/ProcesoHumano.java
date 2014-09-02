@@ -63,6 +63,11 @@ if(this.Estado.compareToIgnoreCase(EstadoActividad.READY.toString())==1){
 					paso++;
 				
 				break;
+			case 3: 
+				actor.juzgarMundoSegunEstandares(new Utilidad(actor.getUltimaUtilidadObtenida()));
+				
+				paso++;
+				break;
 			default:
 				this.Estado =EstadoActividad.READY.toString();
 			}
