@@ -31,7 +31,7 @@ public class AmbienteLocal implements GeografiaFija{
 	
 	private List NodosSAAB;
 	
-	private List CentrosUrbanos;
+	private List<CentroUrbano> CentrosUrbanos;
 	
 	private List ViaPrincipal;
 	
@@ -118,6 +118,38 @@ public class AmbienteLocal implements GeografiaFija{
 	public void setClima(String clima) {
 		Clima = clima;
 	}
+	public List getNodosSAAB() {
+		return NodosSAAB;
+	}
+
+
+	public void setNodosSAAB(List nodosSAAB) {
+		NodosSAAB = nodosSAAB;
+	}
+
+
+	public List getCentrosUrbanos() {
+		return CentrosUrbanos;
+	}
+
+
+	public void setCentrosUrbanos(List centrosUrbanos) {
+		CentrosUrbanos = centrosUrbanos;
+	}
+
+
+	public void setProductosAgricolasViables(
+			List<Producto> productosAgricolasViables) {
+		ProductosAgricolasViables = productosAgricolasViables;
+	}
+
+
+	public void setActividadesViables(
+			List<SistemaActividadHumana> actividadesViables) {
+		ActividadesViables = actividadesViables;
+	}
+
+
 	/**
 	 * @return the pisoTermico
 	 */
@@ -151,3 +183,4 @@ public class AmbienteLocal implements GeografiaFija{
 	
 
 }
+
