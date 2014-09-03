@@ -25,6 +25,8 @@ public abstract class ProducirCebollaBulbo implements SistemaActividadHumana {
 	
 	private int paso;
 	
+	public final double Tickinicial;
+	
 	
 	/**
 	 * Constructor
@@ -39,6 +41,7 @@ public abstract class ProducirCebollaBulbo implements SistemaActividadHumana {
 		this.CostoEjecucion	=mpa.getCosto();
 		this.terreno		=t;	
 		
+		Tickinicial	= RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
 		this.Estado = EstadoActividad.READY.toString();
 	}
 
@@ -90,17 +93,27 @@ public abstract class ProducirCebollaBulbo implements SistemaActividadHumana {
 				break;
 			case 5:
 				
-				actor.addRecurso(this.terreno.cosechar(cebollaBulbo));			
+				//espera x numero de ticks
 				
-				this.paso++;				
+				Double CurrentTick = RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
+				
+				if(CurrentTick-Tickinicial>=3600){//5 meses
+					this.paso++;
+				}
+				
 				break;
 			case 6:
+				
+				actor.addRecurso(this.terreno.cosechar(cebollaBulbo));			
+				
 				//ejecuta subsistema de actividad
 				
 				//verifica si el sistema termino
 				
 				//si termina suma un paso
-				//this.paso++;				
+				//this.paso++;	
+				
+				this.paso++;				
 				break;
 			default:
 				this.Estado ="DONE";
