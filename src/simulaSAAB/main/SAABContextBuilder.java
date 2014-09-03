@@ -100,7 +100,7 @@ public class SAABContextBuilder implements ContextBuilder<Object> {
 		NetworkBuilder<Object> NetDemandaBuilder	=new NetworkBuilder<Object>(VariablesGlobales.RED_OFERTA,OfertaContext,false);
 		OfertaNetwork	= NetDemandaBuilder.buildNetwork();
 		
-		RuralContext.addSubContext(OfertaContext);		
+		SAABContext.addSubContext(OfertaContext);		
 		
 		//Ambiente Distrital -NUTRIRED			
 		
