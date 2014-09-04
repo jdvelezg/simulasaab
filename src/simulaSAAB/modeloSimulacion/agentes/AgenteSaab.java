@@ -112,6 +112,12 @@ public interface AgenteSaab {
 	 */
 	public Geometry getGeometria();
 	
+	/**
+	 * Evalua la viabilidad de la oferta recibida como parametro. Devuleve verdadero si la acepta.
+	 * @param o
+	 * @return Booleano de respuesta, Verdadero si acepta la oferta, Falso en caso contrario.
+	 */
+	public boolean evaluarPropuesta(Oferta o);
 
 }
 
