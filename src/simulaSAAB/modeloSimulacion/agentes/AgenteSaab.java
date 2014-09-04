@@ -118,6 +118,13 @@ public interface AgenteSaab {
 	 * @return Booleano de respuesta, Verdadero si acepta la oferta, Falso en caso contrario.
 	 */
 	public boolean evaluarPropuesta(Oferta o);
+	
+	/**
+	 * Entrega los productos vigentes en la oferta al agente definido
+	 * @param a, agente al que se le entregan los productos.
+	 * @param o, Oferta sobre la cual se lleva a cabo la trnasferencia.
+	 * /
+	public void entregarProductos(AgenteSaab a, Oferta o);
 
 }
 
