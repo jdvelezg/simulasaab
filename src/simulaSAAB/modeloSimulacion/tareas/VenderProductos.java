@@ -203,6 +203,7 @@ public abstract class VenderProductos implements SistemaActividadHumana {
 				}else{// if sin respuesta - busca en red las demandas
 					
 					this.paso=4;
+					System.out.println("Venta fallida, volviendo a buscar demanda");
 				}
 					
 				break;
