@@ -8,8 +8,10 @@ import java.util.List;
 
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
+import simulaSAAB.modeloSimulacion.comunicacion.ActoComunicativo;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
+import simulaSAAB.modeloSimulacion.comunicacion.MensajeACL;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
@@ -76,7 +78,28 @@ public class Intermediario extends ActorDeAbastecimiento {
 	 * @see simulaSAAB.modeloSimulacion.agentes.AgenteSaab#receiveMessage()
 	 */
 	@Override
-	public void receiveMessage() {
+	public ActoComunicativo receiveMessage(MensajeACL mensaje) {
+		
+		String p = mensaje.getPerformative();
+		
+		switch(p){
+		
+		case "Propose" //Cuando el Acto comunicativo es de tipo Propose
+		if(p instanceof NegociarProducto) {
+			
+		}
+		case "Call for Proposal"
+		case "inform"
+		case "not-understood"
+		case "propose"
+		case "query-IF"
+		case "refuse"
+		case "reject-proposal"
+		case "request"
+		
+		}
+
+		
 		// TODO Auto-generated method stub
 
 	}
