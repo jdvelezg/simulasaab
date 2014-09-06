@@ -5,8 +5,11 @@ package simulaSAAB.modeloSimulacion.agentes;
 
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
+import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
@@ -121,10 +124,11 @@ public interface AgenteSaab {
 	
 	/**
 	 * Entrega los productos vigentes en la oferta al agente definido
-	 * @param a, agente al que se le entregan los productos.
-	 * @param o, Oferta sobre la cual se lleva a cabo la trnasferencia.
-	 * /
-	public void entregarProductos(AgenteSaab a, Oferta o);
+	 * @param a agente al que se le entregan los productos
+	 * @param o Oferta sobre la cual se lleva a cabo la trnasferencia
+	 */
+	public void entregarProductos(AgenteSaab a, Oferta o);	
+	
 
 }
 
