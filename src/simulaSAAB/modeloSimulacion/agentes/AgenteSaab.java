@@ -8,6 +8,7 @@ import java.util.List;
 import com.vividsolutions.jts.geom.Geometry;
 
 import simulaSAAB.modeloSimulacion.Producto;
+import simulaSAAB.modeloSimulacion.comunicacion.ActoComunicativo;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
@@ -81,7 +82,7 @@ public interface AgenteSaab {
 	/**
 	 * Recive un mensaje ACL
 	 */
-	void receiveMessage();
+	ActoComunicativo receiveMessage(ActoComunicativo mensaje);
 	
 	/**
 	 * Devuelve un listado de productos, que deben ser interpretados como opciones de accion
