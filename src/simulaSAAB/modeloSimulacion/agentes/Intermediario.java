@@ -81,14 +81,14 @@ public class Intermediario extends ActorDeAbastecimiento {
 	 * @see simulaSAAB.modeloSimulacion.agentes.AgenteSaab#receiveMessage()
 	 */
 	@Override
-	public ActoComunicativo receiveMessage(MensajeACL mensaje) {
+	public MensajeACL receiveMessage(MensajeACL mensaje) {
 		
 		String p = mensaje.getPerformative();
 		
 		switch(p){
 		
-		case "Propose" //Cuando el Acto comunicativo es de tipo Propose
-		if(p instanceof NegociarProducto) {
+		case "Propose" : //Cuando el Acto comunicativo es de tipo Propose
+		if(p instanceof ) {
 			
 		}
 		case "Call for Proposal"
