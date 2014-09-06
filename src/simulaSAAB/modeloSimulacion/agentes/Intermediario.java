@@ -77,6 +77,7 @@ public class Intermediario extends ActorDeAbastecimiento {
 
 	}
 
+<<<<<<< HEAD
 	/* (non-Javadoc)
 	 * @see simulaSAAB.modeloSimulacion.agentes.AgenteSaab#receiveMessage()
 	 */
@@ -107,6 +108,9 @@ public class Intermediario extends ActorDeAbastecimiento {
 
 	}
 
+=======
+	
+>>>>>>> 4b2a9652808dea9bf88b28133695f061c0385ef2
 	/* (non-Javadoc)
 	 * @see simulaSAAB.modeloSimulacion.agentes.ActorDeAbastecimiento#atribuirSignificadoAlMundoPercibido()
 	 */
@@ -306,6 +310,18 @@ public class Intermediario extends ActorDeAbastecimiento {
 	public void ejecutarActividadesConProposito() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public MensajeACL receiveMessage(MensajeACL mensaje) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Double addDinero(double monto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
