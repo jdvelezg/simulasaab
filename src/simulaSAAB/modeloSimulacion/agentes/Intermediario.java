@@ -12,6 +12,7 @@ import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
+import simulaSAAB.modeloSimulacion.comunicacion.MensajeACL;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
@@ -75,15 +76,7 @@ public class Intermediario extends ActorDeAbastecimiento {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see simulaSAAB.modeloSimulacion.agentes.AgenteSaab#receiveMessage()
-	 */
-	@Override
-	public void receiveMessage() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see simulaSAAB.modeloSimulacion.agentes.ActorDeAbastecimiento#atribuirSignificadoAlMundoPercibido()
 	 */
@@ -283,6 +276,18 @@ public class Intermediario extends ActorDeAbastecimiento {
 	public void ejecutarActividadesConProposito() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public MensajeACL receiveMessage(MensajeACL mensaje) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Double addDinero(double monto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
