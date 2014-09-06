@@ -4,6 +4,10 @@ import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 
 public abstract class Conversacion {
 	
+	protected static int SecuenciaId;
+	
+	protected final int ConversacionId;
+	
 	protected AgenteSaab emisor;
 	
 	protected AgenteSaab receptor;
@@ -15,7 +19,8 @@ public abstract class Conversacion {
 	 * Constructor
 	 */
 	public Conversacion(){
-		
+		ConversacionId = SecuenciaId+1;
+		SecuenciaId++;
 	}
 	
 	/**
@@ -24,6 +29,8 @@ public abstract class Conversacion {
 	 * @param r Agente receptor inicial en la conversación
 	 */
 	public Conversacion(AgenteSaab e, AgenteSaab r){
+		ConversacionId = SecuenciaId+1;
+		SecuenciaId++;
 		
 		this.emisor 	=e;
 		this.receptor 	=r;
@@ -33,7 +40,15 @@ public abstract class Conversacion {
 	 * Protocolo de ejecución de la conversación
 	 */
 	public abstract void protocoloDeConversacion();
+	
+	
 
+	/**
+	 * @return the conversacionId
+	 */
+	public int getConversacionId() {
+		return ConversacionId;
+	}
 
 	public AgenteSaab getEmisor() {
 		return emisor;

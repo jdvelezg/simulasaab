@@ -6,7 +6,9 @@ import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 
 public class MensajeACL {
 	
-	private String Conversacionid;
+	private static int SecuenciaId;
+	
+	private final int Conversacionid;
 	
 	private String Encoding;
 	
@@ -28,20 +30,37 @@ public class MensajeACL {
 	
 	private AgenteSaab Sender;
 	
+	private AgenteSaab Receiver;
+	
+	private Preposicion Content;
+	
+	
+	/**
+	 * @return the content
+	 */
+	public Preposicion getContent() {
+		return Content;
+	}
+
+	/**
+	 * @param content the content to set
+	 */
+	public void setContent(Preposicion content) {
+		Content = content;
+	}
+
 	/**
 	 * Constructor
 	 */
 	public MensajeACL(){
-		
+		Conversacionid =SecuenciaId+1;
+		SecuenciaId++;
 	}
 
-	public String getConversacionid() {
+	public int getConversacionid() {
 		return Conversacionid;
 	}
-
-	public void setConversacionid(String conversacionid) {
-		Conversacionid = conversacionid;
-	}
+	
 
 	public String getEncoding() {
 		return Encoding;
@@ -121,6 +140,20 @@ public class MensajeACL {
 
 	public void setSender(AgenteSaab sender) {
 		Sender = sender;
+	}
+
+	/**
+	 * @return the receiver
+	 */
+	public AgenteSaab getReceiver() {
+		return Receiver;
+	}
+
+	/**
+	 * @param receiver the receiver to set
+	 */
+	public void setReceiver(AgenteSaab receiver) {
+		Receiver = receiver;
 	}
 	
 	
