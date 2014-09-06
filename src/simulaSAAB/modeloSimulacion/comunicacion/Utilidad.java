@@ -17,6 +17,14 @@ public class Utilidad {
 		
 	}
 	
+	/**
+	 * Constructor
+	 * @param d Monto de la utilidad
+	 */
+	public Utilidad(double d){
+		this.monto = d;
+	}
+	
 	
 
 }

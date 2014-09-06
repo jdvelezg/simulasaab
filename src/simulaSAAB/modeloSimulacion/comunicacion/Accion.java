@@ -2,9 +2,9 @@ package simulaSAAB.modeloSimulacion.comunicacion;
 
 public class Accion {
 	
-	private static int consecutivo;
-	
-	private int id;
+	private static int SecuenciaId;
+		
+	private final int id;
 	
 	private String verbo;
 	
@@ -12,13 +12,15 @@ public class Accion {
 	 * Constructor
 	 */
 	public Accion(){
-		id=consecutivo++;
+		id=SecuenciaId+1;
+		SecuenciaId++;
 	}
 	/**
 	 * Constructor
 	 */
 	public Accion(String verbo){
-		id=consecutivo++;
+		id=SecuenciaId+1;
+		SecuenciaId++;
 		this.verbo 	= verbo;
 		
 	}
@@ -28,16 +30,7 @@ public class Accion {
 	 */
 	public int getId() {
 		return id;
-	}
-
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	}	
 
 	/**
 	 * @return the verbo

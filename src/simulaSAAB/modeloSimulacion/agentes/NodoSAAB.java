@@ -6,8 +6,10 @@ import com.vividsolutions.jts.geom.Geometry;
 
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
+import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
+import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
 import simulaSAAB.modeloSimulacion.tareas.SistemaActividadHumana;
 
 public class NodoSAAB extends NodoLogistico {
@@ -133,6 +135,48 @@ public class NodoSAAB extends NodoLogistico {
 
 	@Override
 	public void setEstado(String e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getEstado() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Producto> atribuirSignificadoAlMundoPercibido() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void formarIntenciones(List<Producto> productos) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Utilidad actuar() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void juzgarMundoSegunEstandares(Utilidad resultado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean evaluarPropuesta(Oferta o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void entregarProductos(AgenteSaab a, Oferta o) {
 		// TODO Auto-generated method stub
 		
 	}

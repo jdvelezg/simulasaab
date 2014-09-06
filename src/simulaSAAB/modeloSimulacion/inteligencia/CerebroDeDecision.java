@@ -18,6 +18,8 @@ public interface CerebroDeDecision extends Cerebro {
 	
 	public  SistemaActividadHumana escogerSistemaActividadHumana(Proposito proposito,List<SistemaActividadHumana> actividades);
 	
+	//public Double FijarPrecioProducto();
+	
 	class FijarSistemasActividadHumana{
 		
 		SistemaActividadHumana Actividad;

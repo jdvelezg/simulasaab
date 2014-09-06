@@ -6,6 +6,8 @@ package simulaSAAB.modeloSimulacion.agentes;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.comunicacion.ActoComunicativo;
@@ -13,6 +15,7 @@ import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
 import simulaSAAB.modeloSimulacion.comunicacion.MensajeACL;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
+import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
 import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
@@ -277,6 +280,30 @@ public class Intermediario extends ActorDeAbastecimiento {
 
 	@Override
 	public void addRecurso(Recurso recurso) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Geometry getGeometria() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean evaluarPropuesta(Oferta o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void entregarProductos(AgenteSaab a, Oferta o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ejecutarActividadesConProposito() {
 		// TODO Auto-generated method stub
 		
 	}

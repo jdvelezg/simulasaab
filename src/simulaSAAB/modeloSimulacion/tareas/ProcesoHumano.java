@@ -8,6 +8,7 @@ import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.agentes.ActorDeAbastecimiento;
 import simulaSAAB.modeloSimulacion.agentes.AgenteSaab;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
+import simulaSAAB.modeloSimulacion.comunicacion.Utilidad;
 
 public class ProcesoHumano implements SistemaActividadHumana {
 	

@@ -13,11 +13,13 @@ import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.space.gis.Geography;
 import repast.simphony.space.projection.Projection;
 import repast.simphony.util.ContextUtils;
-
 import simulaSAAB.main.VariablesGlobales;
 import simulaSAAB.modeloSimulacion.Producto;
 import simulaSAAB.modeloSimulacion.Terreno;
 import simulaSAAB.modeloSimulacion.comunicacion.Item;
+import simulaSAAB.modeloSimulacion.comunicacion.Dinero;
+import simulaSAAB.modeloSimulacion.comunicacion.MensajeACL;
+import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Recurso;
 import simulaSAAB.modeloSimulacion.comunicacion.Objetivo;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
@@ -43,7 +45,7 @@ public class Productor extends ActorDeAbastecimiento {
 
 	private String Estado;	
 	
-	private Item Dinero;
+	private Dinero Dinero;
 	
 	private List<Recurso> Recursos;
 
@@ -103,12 +105,6 @@ public class Productor extends ActorDeAbastecimiento {
 
 	@Override
 	public void sendMessage() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void receiveMessage() {
 		// TODO Auto-generated method stub
 
 	}
@@ -234,15 +230,15 @@ public class Productor extends ActorDeAbastecimiento {
 	/**
 	 * @return the dinero
 	 */
-	public Item getDinero() {
+	public Dinero getDinero() {
 		return Dinero;
 	}
 
 	/**
 	 * @param dinero the dinero to set
 	 */
-	public void setDinero(Item dinero) {
-		Dinero = dinero;
+	public void setDinero(double dinero) {
+		Dinero = new Dinero(dinero);
 	}
 
 	/**
@@ -412,6 +408,36 @@ public class Productor extends ActorDeAbastecimiento {
 			this.Recursos=new ArrayList();
 		
 		this.Recursos.add(recurso);
+	}
+
+	@Override
+	public boolean evaluarPropuesta(Oferta o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void entregarProductos(AgenteSaab a, Oferta o) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ejecutarActividadesConProposito() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MensajeACL receiveMessage(MensajeACL mensaje) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Double addDinero(double monto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 		
 	

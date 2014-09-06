@@ -169,6 +169,7 @@ public abstract class VenderProductos implements SistemaActividadHumana {
 				
 				while(DemIter.hasNext()){
 					
+					//FALTA: SI ES OFERTA SALTE
 					Demanda temp = (Demanda)DemIter.next();					
 					if(temp.getPrecio()>tempPrecio)
 						demanda = temp;

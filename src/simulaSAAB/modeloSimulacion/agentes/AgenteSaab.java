@@ -8,7 +8,7 @@ import java.util.List;
 import com.vividsolutions.jts.geom.Geometry;
 
 import simulaSAAB.modeloSimulacion.Producto;
-import simulaSAAB.modeloSimulacion.comunicacion.ActoComunicativo;
+import simulaSAAB.modeloSimulacion.comunicacion.MensajeACL;
 import simulaSAAB.modeloSimulacion.comunicacion.Experiencia;
 import simulaSAAB.modeloSimulacion.comunicacion.Oferta;
 import simulaSAAB.modeloSimulacion.comunicacion.Proposito;
@@ -82,7 +82,7 @@ public interface AgenteSaab {
 	/**
 	 * Recive un mensaje ACL
 	 */
-	ActoComunicativo receiveMessage(ActoComunicativo mensaje);
+	MensajeACL receiveMessage(MensajeACL mensaje);
 	
 	/**
 	 * Devuelve un listado de productos, que deben ser interpretados como opciones de accion
@@ -128,7 +128,14 @@ public interface AgenteSaab {
 	 * @param a agente al que se le entregan los productos
 	 * @param o Oferta sobre la cual se lleva a cabo la trnasferencia
 	 */
-	public void entregarProductos(AgenteSaab a, Oferta o);	
+	public void entregarProductos(AgenteSaab a, Oferta o);
+	
+	/**
+	 * Adiciona el monto al dinero del agente
+	 * @param monto a adicionar o sustraer según el signo
+	 * @return Devuelve la nueva cantidad de dinero poseida por el agente
+	 */
+	public Double addDinero(double monto);
 	
 
 }
