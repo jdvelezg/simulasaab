@@ -77,40 +77,54 @@ public class Intermediario extends ActorDeAbastecimiento {
 
 	}
 
-<<<<<<< HEAD
-	/* (non-Javadoc)
+/* (non-Javadoc)
 	 * @see simulaSAAB.modeloSimulacion.agentes.AgenteSaab#receiveMessage()
 	 */
 	@Override
 	public MensajeACL receiveMessage(MensajeACL mensaje) {
 		
 		String p = mensaje.getPerformative();
+		Preposicion preposition = mensaje.getContent();
+		MensajeACL Respuesta;
+		Respuesta = new MensajeACL();
 		
 		switch(p){
 		
 		case "Propose" : //Cuando el Acto comunicativo es de tipo Propose
-		if(p instanceof ) {
+							
+				Respuesta.setSender(mensaje.getReceiver());
+				Respuesta.setReceiver(mensaje.getSender());
+				Respuesta.setPerformative("accept-proposal");
+				Respuesta.setContent(preposition);
+				Respuesta.setProtocol(NegociarProducto.class.toString());	
 			
-		}
-		case "Call for Proposal"
-		case "inform"
-		case "not-understood"
-		case "propose"
-		case "query-IF"
-		case "refuse"
-		case "reject-proposal"
-		case "request"
+		break;
+		case "Call for Proposal" :
+			    break;
+		case "inform" :
+				break;
+		case "not-understood":
+				break;
+		case "propose":
+				break;
+		case "query-IF":
+				break;
+		case "refuse":
+				break;
+		case "reject-proposal":
+				break;
+		case "request":
+				break;
+		
+		
 		
 		}
 
-		
-		// TODO Auto-generated method stub
+		return Respuesta;
 
 	}
-
-=======
 	
->>>>>>> 4b2a9652808dea9bf88b28133695f061c0385ef2
+	
 	/* (non-Javadoc)
 	 * @see simulaSAAB.modeloSimulacion.agentes.ActorDeAbastecimiento#atribuirSignificadoAlMundoPercibido()
 	 */
